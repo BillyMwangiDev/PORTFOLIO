@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI Pipeline (No Deployment)
 
 on:
   push:
@@ -61,28 +61,3 @@ jobs:
     
     - name: Check for outdated dependencies
       run: npm outdated || true
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [test, security]
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Check Vercel secrets
-      run: |
-        if [ -z "${{ secrets.VERCEL_TOKEN }}" ] || [ -z "${{ secrets.ORG_ID }}" ] || [ -z "${{ secrets.PROJECT_ID }}" ]; then
-          echo "⚠️  Vercel secrets not configured. Skipping deployment."
-          echo "Please add VERCEL_TOKEN, ORG_ID, and PROJECT_ID secrets to your repository."
-          exit 0
-        fi
-    
-    - name: Deploy to Vercel
-      uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.ORG_ID }}
-        vercel-project-id: ${{ secrets.PROJECT_ID }}
-        vercel-args: '--prod'
