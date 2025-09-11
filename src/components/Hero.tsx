@@ -8,15 +8,15 @@ import { motion } from 'framer-motion'
 const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link element to download the PDF
-    const link = document.createElement(&apos;a&apos;)
-    link.href = &apos;/Billy_Mwangi.pdf&apos;
-    link.download = &apos;Billy_Mwangi_Resume.pdf&apos;
+    const link = document.createElement('a')
+    link.href = '/Billy_Mwangi.pdf'
+    link.download = 'Billy_Mwangi_Resume.pdf'
     link.click()
   }
 
   const handleContact = () => {
     // Open email client with your email
-    window.open(&apos;mailto:billymwangi200@gmail.com?subject=Portfolio Inquiry&body=Hi Billy, I saw your portfolio and would like to get in touch!&apos;, &apos;_blank&apos;)
+    window.open('mailto:billymwangi200@gmail.com?subject=Portfolio Inquiry&body=Hi Billy, I saw your portfolio and would like to get in touch!', '_blank')
   }
 
   return (
