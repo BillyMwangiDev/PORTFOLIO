@@ -61,7 +61,7 @@ const Hero = () => {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 mb-6"
                 >
-                  IT Engineer & Aspiring Backend Developer
+                  Building the Future, One Line of Code at a Time
                 </motion.h2>
                 
                 <motion.p
@@ -70,10 +70,10 @@ const Hero = () => {
                   transition={{ duration: 0.8, delay: 1.0 }}
                   className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8"
                 >
-                  Hi, I&apos;m Billy Mwangi, an IT Engineer and aspiring Backend Developer with expertise in Python, Django, and DevOps. 
-                  I have built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime by 15% through 
-                  proactive infrastructure management. I thrive on solving complex problems and building efficient, scalable systems. 
-                  I&apos;m seeking opportunities to contribute to backend development or DevOps teams that value innovation and reliability.
+                  Welcome to my digital space! I&apos;m Billy, a passionate IT Engineer who fell in love with the art of problem-solving through technology. 
+                  My journey began with curiosity about how things work behind the scenes, and it led me to discover the magic of backend development. 
+                  I believe in creating solutions that not only work but make a real difference. When I&apos;m not crafting elegant code or optimizing systems, 
+                  you&apos;ll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
                 </motion.p>
 
                 <motion.div
@@ -89,7 +89,7 @@ const Hero = () => {
                     className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer"
                   >
                     <Mail className="mr-3" size={22} />
-                    Hire Me
+                    Let&apos;s Connect
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
