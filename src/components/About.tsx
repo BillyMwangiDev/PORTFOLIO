@@ -18,9 +18,6 @@ const About = () => {
     "Security best practices and vulnerability assessment",
     "Automated testing and continuous integration/deployment",
     "Performance monitoring and system optimization",
-    "Cross-platform compatibility and responsive design",
-    "Version control and collaborative development workflows",
-    "Technical documentation and knowledge sharing",
     "Problem-solving mindset with analytical approach",
     "Passion for learning and staying current with technology trends"
   ]
@@ -76,7 +73,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
               className="text-gray-600 leading-relaxed"
             >
- the              My systems administration background gives me a unique perspective on building reliable software. I&apos;ve managed enterprise systems, automated workflows, and learned how applications perform in real environments. This experience helps me build backend systems that are both functional and maintainable.
+              My journey started in systems administration, where I learned the art of keeping things running smoothly. There&apos;s nothing quite like the satisfaction of troubleshooting a server issue at 2 AM or automating a process that used to take hours. This hands-on experience with enterprise systems taught me how applications really behave in production, which makes me a better developer today.
             </motion.p>
             
             <motion.p
@@ -85,7 +82,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.2 }}
               className="text-gray-600 leading-relaxed"
             >
-              I&apos;m passionate about clean architecture, performance, and AI tools that speed up development. I enjoy turning complex problems into simple solutions and building APIs that are clear and scalable.
+              When I discovered backend development, it felt like finding the missing piece. I love the challenge of designing APIs that are both powerful and intuitive, writing code that&apos;s clean and maintainable, and using AI tools to solve problems faster. There&apos;s something deeply satisfying about building systems that other developers can easily understand and extend.
             </motion.p>
           </motion.div>
 
