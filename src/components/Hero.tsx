@@ -72,8 +72,8 @@ const Hero = () => {
                 >
                   Welcome to my digital space! I&apos;m Billy, a Systems Administrator who fell in love with the art of problem‑solving through technology. 
                   My journey started by keeping servers healthy and networks humming, and naturally grew into building things—from scripts that save hours, 
-                  to full applications that make work feel effortless. Along the way I discovered the magic of AI, and I love experimenting with models 
-                  and building AI‑powered tooling that turns ideas into working products. These days I&apos;m an aspiring backend developer, obsessed with clean 
+                  to full applications that make work feel effortless. I&apos;m passionate about—and proficient with—modern AI tools that boost development efficiency, 
+                  helping me prototype faster and ship smarter. These days I&apos;m an aspiring backend developer, obsessed with clean 
                   architecture, reliable services, and shipping useful features. When I&apos;m not crafting code or optimizing systems, you&apos;ll find me exploring new tech, 
                   contributing to open‑source, or sharing what I learn with the community.
                 </motion.p>
