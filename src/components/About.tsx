@@ -67,7 +67,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
               className="text-gray-600 leading-relaxed"
             >
-              My journey started in systems administration, where I learned the art of keeping things running smoothly. There&apos;s nothing quite like the satisfaction of troubleshooting a server issue at 2 AM or automating a process that used to take hours. This hands-on experience with enterprise systems taught me how applications really behave in production, which makes me a better developer today.
+              My journey with tech started with curiosity. I was the person who enjoyed tinkering, fixing, and figuring out how systems worked. That passion grew into a career in IT engineering and system administration where I learned how to manage servers, secure networks, and keep businesses running without interruptions.
             </motion.p>
             
             <motion.p
@@ -76,7 +76,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.2 }}
               className="text-gray-600 leading-relaxed"
             >
-              When I discovered backend development, it felt like finding the missing piece. I love the challenge of designing APIs that are both powerful and intuitive, writing code that&apos;s clean and maintainable, and using AI tools to solve problems faster. There&apos;s something deeply satisfying about building systems that other developers can easily understand and extend.
+              Over time, I discovered a deeper love for building, not just maintaining, which led me into backend development. Alongside that shift, I&apos;ve embraced AI, from training models to using tools that make work faster and smarter. Today I bring together the reliability of a sysadmin, the problem-solving mindset of a developer, and the forward-thinking edge of AI to build solutions that are efficient, scalable, and future-ready.
             </motion.p>
           </motion.div>
 
