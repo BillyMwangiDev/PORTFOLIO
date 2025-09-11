@@ -70,10 +70,10 @@ const Hero = () => {
                   transition={{ duration: 0.8, delay: 1.0 }}
                   className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8"
                 >
-                  Hi, I'm Billy Mwangi, an IT Engineer and aspiring Backend Developer with expertise in Python, Django, and DevOps. 
+                  Hi, I&apos;m Billy Mwangi, an IT Engineer and aspiring Backend Developer with expertise in Python, Django, and DevOps. 
                   I have built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime by 15% through 
                   proactive infrastructure management. I thrive on solving complex problems and building efficient, scalable systems. 
-                  I'm seeking opportunities to contribute to backend development or DevOps teams that value innovation and reliability.
+                  I&apos;m seeking opportunities to contribute to backend development or DevOps teams that value innovation and reliability.
                 </motion.p>
 
                 <motion.div

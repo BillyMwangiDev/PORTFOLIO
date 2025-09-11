@@ -36,7 +36,7 @@ const Skills = () => {
             </h3>
             
             <div className="space-y-4">
-              {skills.map((skill, _index) => (
+              {skills.map((skill) => (
                 <div key={skill.name} className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700 font-medium">{skill.name}</span>
@@ -60,7 +60,7 @@ const Skills = () => {
             </h3>
             
             <div className="grid grid-cols-2 gap-4">
-              {categories.map((category, _index) => (
+              {categories.map((category) => (
                 <div
                   key={category}
                   className="p-4 bg-white rounded-lg shadow-sm border border-gray-200 text-center hover:shadow-md hover:border-blue-300 transition-all duration-200 hover:bg-blue-50"

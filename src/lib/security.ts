@@ -119,7 +119,7 @@ export function sanitizeSQL(input: string): string {
 }
 
 // Rate limiting utilities
-export function isRateLimited(ip: string, limit: number, _windowMs: number): boolean {
+export function isRateLimited(ip: string, limit: number): boolean {
   const now = Date.now()
   const key = `rate_limit:${ip}`
   

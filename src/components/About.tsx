@@ -80,7 +80,7 @@ const About = () => {
               className="text-gray-600 leading-relaxed"
             >
               My journey into backend development with Python and Django has been driven by a passion for creating efficient, data-driven 
-              solutions. I've successfully built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime 
+              solutions. I&apos;ve successfully built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime 
               by 15% through proactive infrastructure management. I thrive on solving complex problems and building systems that not only 
               meet current needs but can scale for future growth.
             </motion.p>
@@ -91,7 +91,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.4 }}
               className="text-gray-600 leading-relaxed"
             >
-              I'm seeking opportunities to contribute to backend development or DevOps teams that value innovation, reliability, and 
+              I&apos;m seeking opportunities to contribute to backend development or DevOps teams that value innovation, reliability, and 
               continuous learning. My goal is to leverage both my IT infrastructure expertise and growing backend development skills 
               to create solutions that make a real impact.
             </motion.p>
