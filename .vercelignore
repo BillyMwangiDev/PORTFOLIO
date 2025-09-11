@@ -35,10 +35,11 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 
-# Documentation
+# Documentation (keep only essential ones)
 README.md
 DEPLOYMENT_*.md
-*.md
+PROJECT_SUMMARY.md
+CHECKLIST.md
 
 # Scripts
 scripts/
