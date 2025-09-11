@@ -91,9 +91,9 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.4 }}
               className="text-gray-600 leading-relaxed"
             >
-              I&apos;m seeking opportunities to contribute to backend development or DevOps teams that value innovation, reliability, and 
-              continuous learning. My goal is to leverage both my IT infrastructure expertise and growing backend development skills 
-              to create solutions that make a real impact.
+              What drives me is the challenge of turning complex problems into elegant solutions. I love diving deep into system architecture, 
+              optimizing performance, and building robust applications that can handle real-world demands. Every project is an opportunity 
+              to learn something new and push the boundaries of what&apos;s possible with technology.
             </motion.p>
           </motion.div>
 
