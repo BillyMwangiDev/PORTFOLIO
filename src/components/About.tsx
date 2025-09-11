@@ -8,6 +8,7 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const strengths = [
+
     "Backend development with Python, Django, and clean APIs",
     "Systems administration, automation, and reliability",
     "DevOps practices: CI/CD, containers, and cloud basics",
@@ -67,16 +68,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
               className="text-gray-600 leading-relaxed"
             >
-              My journey with tech started with curiosity. I was the person who enjoyed tinkering, fixing, and figuring out how systems worked. That passion grew into a career in IT engineering and system administration where I learned how to manage servers, secure networks, and keep businesses running without interruptions.
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="text-gray-600 leading-relaxed"
-            >
-              Over time, I discovered a deeper love for building, not just maintaining, which led me into backend development. Alongside that shift, I&apos;ve embraced AI, from training models to using tools that make work faster and smarter. Today I bring together the reliability of a sysadmin, the problem-solving mindset of a developer, and the forward-thinking edge of AI to build solutions that are efficient, scalable, and future-ready.
+              My journey with tech started with curiosity. I was the guy who enjoyed tinkering, fixing, and figuring out how systems worked. That passion grew into a career in IT engineering and system administration where I learned how to manage servers, secure networks, and keep businesses running without interruptions. Over time, I discovered a deeper love for building, not just maintaining, which led me into backend development. Alongside that shift, I have embraced AI, from training models to using tools that make work faster and smarter. Today I bring together the reliability of a sysadmin, the problem-solving mindset of a developer, and the forward-thinking edge of AI to build solutions that are efficient, scalable, and future-ready.
             </motion.p>
           </motion.div>
 
