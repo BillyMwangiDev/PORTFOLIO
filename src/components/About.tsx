@@ -79,11 +79,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.2 }}
               className="text-gray-600 leading-relaxed"
             >
-              My journey into backend development with Python and Django has been driven by a passion for creating efficient, data-driven 
-              solutions. I&apos;ve successfully built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime 
-              by 15% through proactive infrastructure management. I thrive on solving complex problems and building systems that not only 
-              meet current needs but can scale for future growth. I&apos;m passionate about and proficient with AI tools that enhance development efficiency, 
-              from rapid prototyping to smarter automation in everyday workflows.
+              I moved from systems administration into backend development to build dependable, scalable tools. Along the way I improved model accuracy for AI projects and cut downtime by automating what used to be manual. I enjoy turning messy problems into simple, maintainable solutions.
             </motion.p>
             
             <motion.p
@@ -92,10 +88,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.4 }}
               className="text-gray-600 leading-relaxed"
             >
-              What drives me is the challenge of turning complex problems into elegant solutions. I love diving deep into system architecture, 
-              optimizing performance, and building robust applications that can handle real-world demands. I bring a Systems Administrator mindset 
-              to software: observability, automation, and reliability first. And as an aspiring backend developer, I&apos;m always refining how I design 
-              APIs, data models, and services that are clear, scalable, and maintainable.
+              I care about clean architecture, observability, and performance. I&apos;m also passionate about and proficient with AI tools that make development faster, from quick prototypes to small automations. As I grow into backend work, I keep refining how I design clear APIs, data models, and services.
             </motion.p>
           </motion.div>
 
