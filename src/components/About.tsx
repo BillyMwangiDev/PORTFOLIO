@@ -8,18 +8,12 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const strengths = [
-    "Full-stack development with Python, Django, and modern web technologies",
-    "Enterprise IT infrastructure management and automation",
-    "AI/ML model optimization and performance improvement",
-    "DevOps practices and system reliability enhancement",
-    "Database design and optimization for high-performance applications",
-    "API development and microservices architecture",
-    "Cloud computing and containerization with Docker",
-    "Security best practices and vulnerability assessment",
-    "Automated testing and continuous integration/deployment",
-    "Performance monitoring and system optimization",
-    "Problem-solving mindset with analytical approach",
-    "Passion for learning and staying current with technology trends"
+    "Backend development with Python, Django, and clean APIs",
+    "Systems administration, automation, and reliability",
+    "DevOps practices: CI/CD, containers, and cloud basics",
+    "Database design and performance tuning",
+    "Security-minded development and monitoring",
+    "Using AI tools to boost development speed and quality"
   ]
 
   return (
