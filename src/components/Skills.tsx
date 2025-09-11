@@ -24,7 +24,7 @@ const Skills = () => {
             Skills & Expertise
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            A comprehensive skill set spanning systems administration, backend development, and modern web technologies
+            The tools and technologies I use to bring ideas to life, from server rooms to cloud platforms
           </p>
         </div>
 
@@ -72,10 +72,10 @@ const Skills = () => {
 
             {/* Additional Info */}
             <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200">
-              <h4 className="font-semibold text-blue-900 mb-3">Continuous Learning</h4>
+              <h4 className="font-semibold text-blue-900 mb-3">Always Evolving</h4>
               <p className="text-blue-800 text-sm">
-                I&apos;m constantly expanding my skill set through online courses, 
-                hands-on projects, and staying current with industry trends.
+                Technology never stops moving, and neither do I. Every new project teaches me something, 
+                every problem solved opens doors to new possibilities. The learning never ends, and that&apos;s what I love about this field.
               </p>
             </div>
           </div>

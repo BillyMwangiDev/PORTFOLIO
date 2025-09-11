@@ -45,8 +45,8 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-gray-300 text-sm leading-relaxed"
             >
-              IT Administrator & Software Engineer passionate about creating efficient 
-              IT solutions and innovative software applications.
+              A tech enthusiast who loves turning complex problems into elegant solutions. 
+              Always curious, always learning, always building something new.
             </motion.p>
           </motion.div>
 

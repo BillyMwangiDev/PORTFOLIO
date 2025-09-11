@@ -100,8 +100,8 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg text-gray-600 max-w-3xl mx-auto"
           >
-            I&apos;m always interested in new opportunities and exciting projects.
-            Let&apos;s discuss how we can work together to achieve your goals.
+            I love connecting with fellow developers, tech enthusiasts, and anyone curious about technology.
+            Whether you want to chat about a project, share ideas, or just say hello - I&apos;d love to hear from you!
           </motion.p>
         </motion.div>
 
@@ -222,9 +222,9 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 1.6 }}
               className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl border border-blue-200"
             >
-              <h3 className="text-xl font-bold text-blue-900 mb-4">Download Resume</h3>
+              <h3 className="text-xl font-bold text-blue-900 mb-4">My Story on Paper</h3>
               <p className="text-blue-800 text-sm mb-6">
-                Get a detailed overview of my experience, skills, and achievements in a professional format.
+                Want to know more about my journey? Here&apos;s a detailed look at my experience and the path that led me here.
               </p>
               <div className="space-y-3">
                 <a

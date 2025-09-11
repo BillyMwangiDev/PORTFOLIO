@@ -150,7 +150,7 @@ const Projects = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            A showcase of my technical expertise and problem-solving approach across various domains
+            Some of the projects I&apos;ve built that I&apos;m particularly proud of - each one taught me something new
           </motion.p>
         </motion.div>
 
