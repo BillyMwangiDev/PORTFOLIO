@@ -67,10 +67,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
               className="text-gray-600 leading-relaxed"
             >
-              With a strong foundation in IT infrastructure and systems administration, I bring a unique perspective to software development. 
-              My experience managing enterprise-level systems, troubleshooting complex technical issues, and implementing automation solutions 
-              has given me deep insights into how applications perform in real-world environments. This background enables me to build 
-              backend systems that are not only functional but also robust, scalable, and maintainable.
+              My systems administration background gives me a unique perspective on building reliable software. I&apos;ve managed enterprise systems, automated workflows, and learned how applications perform in real environments. This experience helps me build backend systems that are both functional and maintainable.
             </motion.p>
             
             <motion.p
@@ -79,16 +76,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.2 }}
               className="text-gray-600 leading-relaxed"
             >
-              I moved from systems administration into backend development to build dependable, scalable tools. Along the way I improved model accuracy for AI projects and cut downtime by automating what used to be manual. I enjoy turning messy problems into simple, maintainable solutions.
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
-              className="text-gray-600 leading-relaxed"
-            >
-              I care about clean architecture, observability, and performance. I&apos;m also passionate about and proficient with AI tools that make development faster, from quick prototypes to small automations. As I grow into backend work, I keep refining how I design clear APIs, data models, and services.
+              I&apos;m passionate about clean architecture, performance, and AI tools that speed up development. I enjoy turning complex problems into simple solutions and building APIs that are clear and scalable.
             </motion.p>
           </motion.div>
 

@@ -70,7 +70,7 @@ const Hero = () => {
                   transition={{ duration: 0.8, delay: 1.0 }}
                   className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8"
                 >
-                  I&apos;m Billy, a Systems Administrator who loves solving real problems with code. I started by keeping servers healthy and soon found joy in building things that save time and feel great to use. I&apos;m passionate about and proficient with AI tools that speed up development and help me ship smarter. Lately, I&apos;ve been diving deep into backend work with a focus on clean architecture and reliable services.
+                  I&apos;m Billy, a Systems Administrator who builds things that solve real problems. I love clean code, reliable systems, and AI tools that make development faster. Currently diving deep into backend work with Python and Django.
                 </motion.p>
 
                 <motion.div
