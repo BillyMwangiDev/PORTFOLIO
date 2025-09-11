@@ -70,10 +70,12 @@ const Hero = () => {
                   transition={{ duration: 0.8, delay: 1.0 }}
                   className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8"
                 >
-                  Welcome to my digital space! I&apos;m Billy, a passionate IT Engineer who fell in love with the art of problem-solving through technology. 
-                  My journey began with curiosity about how things work behind the scenes, and it led me to discover the magic of backend development. 
-                  I believe in creating solutions that not only work but make a real difference. When I&apos;m not crafting elegant code or optimizing systems, 
-                  you&apos;ll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
+                  Welcome to my digital space! I&apos;m Billy, a Systems Administrator who fell in love with the art of problem‑solving through technology. 
+                  My journey started by keeping servers healthy and networks humming, and naturally grew into building things—from scripts that save hours, 
+                  to full applications that make work feel effortless. Along the way I discovered the magic of AI, and I love experimenting with models 
+                  and building AI‑powered tooling that turns ideas into working products. These days I&apos;m an aspiring backend developer, obsessed with clean 
+                  architecture, reliable services, and shipping useful features. When I&apos;m not crafting code or optimizing systems, you&apos;ll find me exploring new tech, 
+                  contributing to open‑source, or sharing what I learn with the community.
                 </motion.p>
 
                 <motion.div

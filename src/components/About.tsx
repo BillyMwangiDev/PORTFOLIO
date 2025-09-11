@@ -82,7 +82,8 @@ const About = () => {
               My journey into backend development with Python and Django has been driven by a passion for creating efficient, data-driven 
               solutions. I&apos;ve successfully built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime 
               by 15% through proactive infrastructure management. I thrive on solving complex problems and building systems that not only 
-              meet current needs but can scale for future growth.
+              meet current needs but can scale for future growth. I also love AI—experimenting with models, evaluation, and small tools that 
+              bring intelligence into everyday workflows.
             </motion.p>
             
             <motion.p
@@ -92,8 +93,9 @@ const About = () => {
               className="text-gray-600 leading-relaxed"
             >
               What drives me is the challenge of turning complex problems into elegant solutions. I love diving deep into system architecture, 
-              optimizing performance, and building robust applications that can handle real-world demands. Every project is an opportunity 
-              to learn something new and push the boundaries of what&apos;s possible with technology.
+              optimizing performance, and building robust applications that can handle real-world demands. I bring a Systems Administrator mindset 
+              to software: observability, automation, and reliability first. And as an aspiring backend developer, I&apos;m always refining how I design 
+              APIs, data models, and services that are clear, scalable, and maintainable.
             </motion.p>
           </motion.div>
 
