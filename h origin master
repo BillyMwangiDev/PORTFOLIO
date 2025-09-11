@@ -1,5 +1,0 @@
-[33mf9cc5ad[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m chore: add .gitignore file and update vercel.json configuration
-[33m00bddba[m chore: update portfolio subproject commit reference
-[33m2f31d21[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: update portfolio components and fix Docker build issues
-[33mebfdbd0[m fix: remove root Dockerfile and docker-compose.yml, use portfolio subdirectory versions
-[33mf338661[m Create docker-image.yml
