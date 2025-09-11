@@ -82,7 +82,7 @@ const About = () => {
               My journey into backend development with Python and Django has been driven by a passion for creating efficient, data-driven 
               solutions. I&apos;ve successfully built full-stack applications, improved AI model accuracy by 20%, and reduced system downtime 
               by 15% through proactive infrastructure management. I thrive on solving complex problems and building systems that not only 
-              meet current needs but can scale for future growth. I&apos;m passionate about—and proficient with—AI tools that enhance development efficiency, 
+              meet current needs but can scale for future growth. I&apos;m passionate about and proficient with AI tools that enhance development efficiency, 
               from rapid prototyping to smarter automation in everyday workflows.
             </motion.p>
             
