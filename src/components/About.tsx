@@ -12,6 +12,15 @@ const About = () => {
     "Enterprise IT infrastructure management and automation",
     "AI/ML model optimization and performance improvement",
     "DevOps practices and system reliability enhancement",
+    "Database design and optimization for high-performance applications",
+    "API development and microservices architecture",
+    "Cloud computing and containerization with Docker",
+    "Security best practices and vulnerability assessment",
+    "Automated testing and continuous integration/deployment",
+    "Performance monitoring and system optimization",
+    "Cross-platform compatibility and responsive design",
+    "Version control and collaborative development workflows",
+    "Technical documentation and knowledge sharing",
     "Problem-solving mindset with analytical approach",
     "Passion for learning and staying current with technology trends"
   ]
@@ -67,7 +76,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
               className="text-gray-600 leading-relaxed"
             >
-              My systems administration background gives me a unique perspective on building reliable software. I&apos;ve managed enterprise systems, automated workflows, and learned how applications perform in real environments. This experience helps me build backend systems that are both functional and maintainable.
+ the              My systems administration background gives me a unique perspective on building reliable software. I&apos;ve managed enterprise systems, automated workflows, and learned how applications perform in real environments. This experience helps me build backend systems that are both functional and maintainable.
             </motion.p>
             
             <motion.p
