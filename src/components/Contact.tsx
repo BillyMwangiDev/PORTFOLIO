@@ -57,9 +57,10 @@ const Contact = () => {
         setSubmitStatus('error')
         setSubmitMessage(data.error || 'Something went wrong. Please try again.')
       }
-    } catch {
+    } catch (error) {
+      console.error('Contact form error:', error)
       setSubmitStatus('error')
-      setSubmitMessage('Network error. Please check your connection and try again.')
+      setSubmitMessage(`Network error: ${error instanceof Error ? error.message : 'Please check your connection and try again.'}`)
     } finally {
       setIsSubmitting(false)
     }
