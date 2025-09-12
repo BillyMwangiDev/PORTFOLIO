@@ -219,19 +219,19 @@ export function cleanupOldData(): void {
   const oneHourAgo = now - (60 * 60 * 1000)
   
   // Clean up old rate limit entries
-  for (const [key, value] of rateLimitStore.entries()) {
+  rateLimitStore.forEach((value, key) => {
     if (value.resetTime < oneHourAgo) {
       rateLimitStore.delete(key)
     }
-  }
+  })
   
   // Clean up old IP reputation data (older than 24 hours)
   const oneDayAgo = now - (24 * 60 * 60 * 1000)
-  for (const [ip, data] of ipReputation.entries()) {
+  ipReputation.forEach((data, ip) => {
     if (data.lastSeen.getTime() < oneDayAgo) {
       ipReputation.delete(ip)
     }
-  }
+  })
 }
 
 // Run cleanup every hour
