@@ -93,42 +93,20 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-4"
           >
-            <motion.h4
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-lg font-semibold"
-            >
+            <h4 className="text-lg font-semibold">
               Contact
-            </motion.h4>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="space-y-2 text-sm text-gray-300"
-            >
-              <motion.p
-                whileHover={{ color: '#3B82F6' }}
-                transition={{ duration: 0.3 }}
-                className="cursor-pointer"
-              >
+            </h4>
+            <div className="space-y-2 text-sm text-gray-300">
+              <p className="cursor-pointer hover:text-blue-400 transition-colors duration-300">
                 billymwangi200@gmail.com
-              </motion.p>
-              <motion.p
-                whileHover={{ color: '#3B82F6' }}
-                transition={{ duration: 0.3 }}
-                className="cursor-pointer"
-              >
+              </p>
+              <p className="cursor-pointer hover:text-blue-400 transition-colors duration-300">
                 +254 799 656 369
-              </motion.p>
-              <motion.p
-                whileHover={{ color: '#3B82F6' }}
-                transition={{ duration: 0.3 }}
-                className="cursor-pointer"
-              >
+              </p>
+              <p className="cursor-pointer hover:text-blue-400 transition-colors duration-300">
                 Nairobi, Kenya
-              </motion.p>
-            </motion.div>
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 
