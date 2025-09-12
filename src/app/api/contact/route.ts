@@ -35,12 +35,16 @@ function sanitizeInput(input: string): string {
 // Email configuration
 const createTransporter = async () => {
   const nodemailer = await import('nodemailer')
+  const user = process.env.EMAIL_USER
+  const pass = process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD
+  
+  if (!user || !pass) {
+    throw new Error('Email credentials are not configured')
+  }
+  
   return nodemailer.default.createTransport({
     service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER || 'billymwangi200@gmail.com',
-      pass: process.env.EMAIL_PASSWORD || process.env.EMAIL_APP_PASSWORD
-    }
+    auth: { user, pass }
   })
 }
 
@@ -57,7 +61,7 @@ async function sendEmail(data: {
   const transporter = await createTransporter()
   
   const mailOptions = {
-    from: process.env.EMAIL_USER || 'billymwangi200@gmail.com',
+    from: process.env.EMAIL_USER,
     to: 'billymwangi200@gmail.com',
     subject: `Portfolio Contact: ${data.subject}`,
     html: `
@@ -164,7 +168,7 @@ export async function POST(request: NextRequest) {
     
     // Send email notification (optional - will work without email setup)
     try {
-      if (process.env.EMAIL_APP_PASSWORD) {
+      if (process.env.EMAIL_USER && (process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD)) {
         await sendEmail(sanitizedData)
         console.log('Email sent successfully for contact form submission from:', sanitizedData.email)
       } else {
