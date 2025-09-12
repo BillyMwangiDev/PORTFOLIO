@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import nodemailer from 'nodemailer'
 
 // Contact form validation schema
 const contactSchema = z.object({
@@ -27,8 +26,9 @@ function sanitizeInput(input: string): string {
 }
 
 // Email configuration
-const createTransporter = () => {
-  return nodemailer.createTransporter({
+const createTransporter = async () => {
+  const nodemailer = await import('nodemailer')
+  return nodemailer.default.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.EMAIL_USER || 'billymwangi200@gmail.com',
@@ -47,7 +47,7 @@ async function sendEmail(data: {
   ip: string
   timestamp: string
 }) {
-  const transporter = createTransporter()
+  const transporter = await createTransporter()
   
   const mailOptions = {
     from: process.env.EMAIL_USER || 'billymwangi200@gmail.com',
