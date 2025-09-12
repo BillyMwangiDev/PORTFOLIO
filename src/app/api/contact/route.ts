@@ -16,13 +16,20 @@ const contactSchema = z.object({
 const contactRateLimit = new Map<string, { count: number; resetTime: number }>()
 
 
-// Sanitize input to prevent XSS
-function sanitizeInput(input: string): string {
+// Escape HTML to prevent XSS while preserving content
+function escapeHtml(input: string): string {
   return input
-    .replace(/[<>]/g, '') // Remove < and >
-    .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/on\w+=/gi, '') // Remove event handlers
-    .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/`/g, '&#96;')
+}
+
+// Sanitize input for plain text storage (preserves content, only trims)
+function sanitizeInput(input: string): string {
+  return input.trim()
 }
 
 // Email configuration
@@ -61,16 +68,16 @@ async function sendEmail(data: {
         
         <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
-          <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-          <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-          <p><strong>Subject:</strong> ${data.subject}</p>
+          <p><strong>Name:</strong> ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</p>
+          <p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
+          <p><strong>Subject:</strong> ${escapeHtml(data.subject)}</p>
           <p><strong>Submitted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
-          <p><strong>IP Address:</strong> ${data.ip}</p>
+          <p><strong>IP Address:</strong> ${escapeHtml(data.ip)}</p>
         </div>
         
         <div style="background-color: #ffffff; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
           <h3 style="color: #374151; margin-top: 0;">Message</h3>
-          <div style="white-space: pre-wrap; line-height: 1.6;">${data.message}</div>
+          <div style="white-space: pre-wrap; line-height: 1.6;">${escapeHtml(data.message)}</div>
         </div>
         
         <div style="margin-top: 20px; padding: 15px; background-color: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
