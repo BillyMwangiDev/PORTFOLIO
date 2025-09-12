@@ -113,10 +113,12 @@ export function sanitizeInput(input: string): string {
 
 export function sanitizeSQL(input: string): string {
   // Basic SQL injection prevention
+  // Note: This is a basic implementation. Use parameterized queries for production.
   const sqlPatterns = [
     /(\b(union|select|insert|update|delete|drop|create|alter|exec|execute|script)\b)/gi,
     /(\b(or|and)\b\s+\d+\s*=\s*\d+)/gi,
-    /(\b(or|and)\b\s+['"]?\w+['"]?\s*=\s*['"]?\w+['"]?)/gi
+    /(\b(or|and)\b\s+['"]?\w+['"]?\s*=\s*['"]?\w+['"]?)/gi,
+    /(\b(script|javascript|vbscript|onload|onerror|onclick)\b)/gi
   ]
   
   let sanitized = input
@@ -124,7 +126,7 @@ export function sanitizeSQL(input: string): string {
     sanitized = sanitized.replace(pattern, '[REDACTED]')
   })
   
-  return sanitized
+  return sanitized.trim()
 }
 
 // Rate limiting utilities

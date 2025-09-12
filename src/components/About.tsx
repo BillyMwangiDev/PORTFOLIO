@@ -97,11 +97,7 @@ const About = () => {
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.1 }}
                   className="flex items-start space-x-3 group"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: 180 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-2 h-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mt-2 flex-shrink-0 group-hover:from-blue-600 group-hover:to-indigo-700 transition-all duration-200"
-                  />
+                  <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mt-2 flex-shrink-0 group-hover:from-blue-600 group-hover:to-indigo-700 transition-all duration-200 group-hover:scale-110 group-hover:rotate-180" />
                   <span className="text-gray-600 group-hover:text-gray-800 transition-colors duration-200">{strength}</span>
                 </motion.div>
               ))}

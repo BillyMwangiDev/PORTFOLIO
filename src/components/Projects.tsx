@@ -4,11 +4,23 @@ import { ExternalLink, Github, Code, Database, Globe } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+// Type definitions for better type safety
+interface Project {
+  title: string
+  description: string
+  image: string
+  tech: string[]
+  highlights: string[]
+  github: string
+  demo: string | null
+  category: string
+}
+
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const projects = [
+  const projects: Project[] = [
     {
       title: 'TASKS - Desktop Task Manager',
       description: 'A PyQt6 desktop application for productivity with task creation, stopwatch tracking, notifications, and SQLite storage. Features an intuitive GUI for managing daily tasks and time tracking.',
@@ -235,30 +247,26 @@ const Projects = () => {
               {/* Project Actions */}
               <div className="px-6 py-4 border-t border-gray-100 bg-gradient-to-r from-gray-50 to-gray-100">
                 <div className="flex space-x-3">
-                  <motion.a
+                  <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex-1 flex items-center justify-center space-x-2 bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                    className="flex-1 flex items-center justify-center space-x-2 bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
                   >
                     <Github className="w-4 h-4" />
                     <span className="text-sm font-medium">View Code</span>
-                  </motion.a>
+                  </a>
                   
                   {project.demo && (
-                    <motion.a
+                    <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                      className="flex-1 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span className="text-sm font-medium">Live Demo</span>
-                    </motion.a>
+                    </a>
                   )}
                 </div>
               </div>
