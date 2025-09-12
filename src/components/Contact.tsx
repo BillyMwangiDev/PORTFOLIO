@@ -1,23 +1,11 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Mail, Phone, MapPin, Linkedin, Github, Download, Send, AlertCircle, CheckCircle } from 'lucide-react'
 
-// Declare Turnstile types
-declare global {
-  interface Window {
-    turnstile: {
-      render: (element: string | HTMLElement, options: any) => string
-      reset: (widgetId: string) => void
-      remove: (widgetId: string) => void
-    }
-  }
-}
-
 const Contact = () => {
   const ref = useRef(null)
-  const captchaRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   
   const [formData, setFormData] = useState({
@@ -28,44 +16,9 @@ const Contact = () => {
     message: '',
     website: '' // Honeypot field
   })
-  const [captchaToken, setCaptchaToken] = useState('')
-  const [captchaWidgetId, setCaptchaWidgetId] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [submitMessage, setSubmitMessage] = useState('')
-
-  // Load Turnstile script
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
-    script.async = true
-    script.defer = true
-    document.head.appendChild(script)
-
-    script.onload = () => {
-      if (window.turnstile && captchaRef.current) {
-        const widgetId = window.turnstile.render(captchaRef.current, {
-          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA', // Test key
-          callback: (token: string) => {
-            setCaptchaToken(token)
-          },
-          'error-callback': () => {
-            setCaptchaToken('')
-          },
-          'expired-callback': () => {
-            setCaptchaToken('')
-          }
-        })
-        setCaptchaWidgetId(widgetId)
-      }
-    }
-
-    return () => {
-      if (captchaWidgetId && window.turnstile) {
-        window.turnstile.remove(captchaWidgetId)
-      }
-    }
-  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -75,12 +28,6 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!captchaToken) {
-      setSubmitStatus('error')
-      setSubmitMessage('Please complete the CAPTCHA verification')
-      return
-    }
-
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
@@ -90,10 +37,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          captchaToken
-        })
+        body: JSON.stringify(formData)
       })
 
       const data = await response.json()
@@ -109,11 +53,6 @@ const Contact = () => {
           message: '',
           website: ''
         })
-        setCaptchaToken('')
-        // Reset CAPTCHA
-        if (captchaWidgetId && window.turnstile) {
-          window.turnstile.reset(captchaWidgetId)
-        }
       } else {
         setSubmitStatus('error')
         setSubmitMessage(data.error || 'Something went wrong. Please try again.')
@@ -419,16 +358,6 @@ const Contact = () => {
                 tabIndex={-1}
                 autoComplete="off"
               />
-
-              {/* CAPTCHA */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 1.45 }}
-                className="flex justify-center"
-              >
-                <div ref={captchaRef} />
-              </motion.div>
 
               <motion.button
                 initial={{ opacity: 0, y: 20 }}

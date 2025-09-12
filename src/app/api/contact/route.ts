@@ -10,36 +10,12 @@ const contactSchema = z.object({
   subject: z.string().min(1, 'Subject is required').max(100, 'Subject too long'),
   message: z.string().min(10, 'Message must be at least 10 characters').max(1000, 'Message too long'),
   // Honeypot field - should be empty
-  website: z.string().max(0, 'Invalid submission'),
-  // CAPTCHA token
-  captchaToken: z.string().min(1, 'CAPTCHA verification required')
+  website: z.string().max(0, 'Invalid submission')
 })
 
 // Rate limiting store for contact form
 const contactRateLimit = new Map<string, { count: number; resetTime: number }>()
 
-// Verify CAPTCHA token (Cloudflare Turnstile)
-async function verifyCaptcha(token: string, ip: string): Promise<boolean> {
-  try {
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        secret: process.env.TURNSTILE_SECRET_KEY || 'test-secret-key',
-        response: token,
-        remoteip: ip,
-      }),
-    })
-
-    const data = await response.json()
-    return data.success === true
-  } catch (error) {
-    console.error('CAPTCHA verification error:', error)
-    return false
-  }
-}
 
 // Sanitize input to prevent XSS
 function sanitizeInput(input: string): string {
@@ -149,11 +125,11 @@ export async function POST(request: NextRequest) {
     }
     
     // Clean up old rate limit entries
-    for (const [key, value] of contactRateLimit.entries()) {
+    contactRateLimit.forEach((value, key) => {
       if (now > value.resetTime) {
         contactRateLimit.delete(key)
       }
-    }
+    })
     
     const body = await request.json()
     
@@ -166,17 +142,7 @@ export async function POST(request: NextRequest) {
       )
     }
     
-    const { firstName, lastName, email, subject, message, captchaToken } = validationResult.data
-    
-    // Verify CAPTCHA
-    const captchaValid = await verifyCaptcha(captchaToken, ip)
-    if (!captchaValid) {
-      console.log(`Failed CAPTCHA verification from IP: ${ip}`)
-      return NextResponse.json(
-        { error: 'CAPTCHA verification failed. Please try again.' },
-        { status: 400 }
-      )
-    }
+    const { firstName, lastName, email, subject, message } = validationResult.data
     
     // Sanitize inputs
     const sanitizedData = {
