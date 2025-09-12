@@ -149,7 +149,8 @@ export function incrementRateLimit(ip: string, limit: number, windowMs: number):
   setRateLimitInfo(key, current)
 }
 
-// Mock storage functions (replace with Redis in production)
+// In-memory storage (not suitable for production serverless environments)
+// TODO: Replace with Redis or database storage for production
 const rateLimitStore = new Map<string, RateLimitInfo>()
 
 function getRateLimitInfo(key: string): RateLimitInfo | undefined {

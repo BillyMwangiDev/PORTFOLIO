@@ -44,7 +44,11 @@ const createTransporter = async () => {
   
   return nodemailer.default.createTransport({
     service: 'gmail',
-    auth: { user, pass }
+    auth: { user, pass },
+    // Add timeout and connection options
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,   // 10 seconds
+    socketTimeout: 10000      // 10 seconds
   })
 }
 

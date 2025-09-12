@@ -9,6 +9,8 @@ interface RateLimitEntry {
   blockUntil?: number
 }
 
+// In-memory storage (not suitable for production serverless environments)
+// TODO: Replace with Redis or database storage for production
 const rateLimitStore = new Map<string, RateLimitEntry>()
 
 // Enhanced rate limiting configuration
@@ -78,11 +80,11 @@ export function middleware(request: NextRequest) {
   }
   
   // Clean up old entries
-  for (const [key, value] of rateLimitStore.entries()) {
+  rateLimitStore.forEach((value, key) => {
     if (now > value.resetTime && !value.blocked) {
       rateLimitStore.delete(key)
     }
-  }
+  })
   
   // Enhanced bot protection - only block clearly malicious user agents
   const userAgent = request.headers.get('user-agent') || ''
