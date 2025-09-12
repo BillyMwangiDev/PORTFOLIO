@@ -40,6 +40,12 @@ const Contact = () => {
         body: JSON.stringify(formData)
       })
 
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Server returned ${response.status}: ${response.statusText}`)
+      }
+
       const data = await response.json()
 
       if (response.ok) {
@@ -55,12 +61,32 @@ const Contact = () => {
         })
       } else {
         setSubmitStatus('error')
-        setSubmitMessage(data.error || 'Something went wrong. Please try again.')
+        // Handle rate limiting specifically
+        if (response.status === 429) {
+          setSubmitMessage('Too many submissions. Please wait a few minutes before trying again.')
+        } else {
+          setSubmitMessage(data.error || 'Something went wrong. Please try again.')
+        }
       }
     } catch (error) {
       console.error('Contact form error:', error)
       setSubmitStatus('error')
-      setSubmitMessage(`Network error: ${error instanceof Error ? error.message : 'Please check your connection and try again.'}`)
+      
+      // Handle different types of errors
+      if (error instanceof Error) {
+        if (error.message.includes('Unexpected token')) {
+          // Check if it's a rate limiting response
+          if (error.message.includes('Too Many Requests')) {
+            setSubmitMessage('Too many submissions. Please wait a few minutes before trying again.')
+          } else {
+            setSubmitMessage('Server error: Please try again later or contact me directly at billymwangi200@gmail.com')
+          }
+        } else {
+          setSubmitMessage(`Network error: ${error.message}`)
+        }
+      } else {
+        setSubmitMessage('Network error: Please check your connection and try again.')
+      }
     } finally {
       setIsSubmitting(false)
     }
