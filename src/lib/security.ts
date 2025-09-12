@@ -91,12 +91,21 @@ export function getIPReputation(ip: string): { score: number; events: SecurityEv
   return ipReputation.get(ip)
 }
 
-// Input sanitization utilities
-export function sanitizeHTML(input: string): string {
+// HTML escaping utilities (preserves content while preventing XSS)
+export function escapeHTML(input: string): string {
   return input
-    .replace(/[<>]/g, '') // Remove < and >
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/`/g, '&#96;')
+}
+
+// Input sanitization utilities (for non-HTML contexts)
+export function sanitizeInput(input: string): string {
+  return input
     .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/on\w+=/gi, '') // Remove event handlers
     .replace(/data:/gi, '') // Remove data: protocol
     .replace(/vbscript:/gi, '') // Remove vbscript: protocol
     .trim()

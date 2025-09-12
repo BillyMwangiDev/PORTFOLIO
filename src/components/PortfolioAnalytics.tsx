@@ -13,17 +13,7 @@ const PortfolioAnalytics = () => {
   })
 
   useEffect(() => {
-    // Simulate analytics data (replace with real analytics service)
-    const interval = setInterval(() => {
-      setAnalytics(prev => ({
-        visitors: prev.visitors + Math.floor(Math.random() * 3),
-        pageViews: prev.pageViews + Math.floor(Math.random() * 5),
-        interactions: prev.interactions + Math.floor(Math.random() * 2),
-        timeOnSite: prev.timeOnSite + Math.floor(Math.random() * 10)
-      }))
-    }, 5000)
-
-    // Track page view
+    // Track page view on mount
     setAnalytics(prev => ({
       ...prev,
       pageViews: prev.pageViews + 1
@@ -39,11 +29,21 @@ const PortfolioAnalytics = () => {
       }))
     }, 1000)
 
+    // Simulate analytics data (replace with real analytics service)
+    const analyticsInterval = setInterval(() => {
+      setAnalytics(prev => ({
+        visitors: prev.visitors + Math.floor(Math.random() * 3),
+        pageViews: prev.pageViews + Math.floor(Math.random() * 5),
+        interactions: prev.interactions + Math.floor(Math.random() * 2),
+        timeOnSite: prev.timeOnSite // Keep current time, don't add random
+      }))
+    }, 5000)
+
     return () => {
-      clearInterval(interval)
       clearInterval(timeTracker)
+      clearInterval(analyticsInterval)
     }
-  }, [])
+  }, []) // Empty dependency array ensures this runs only once
 
   const stats = [
     {
