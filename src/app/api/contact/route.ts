@@ -155,13 +155,17 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString()
     }
     
-    // Send email notification
+    // Send email notification (optional - will work without email setup)
     try {
-      await sendEmail(sanitizedData)
-      console.log('Email sent successfully for contact form submission from:', sanitizedData.email)
+      if (process.env.EMAIL_APP_PASSWORD) {
+        await sendEmail(sanitizedData)
+        console.log('Email sent successfully for contact form submission from:', sanitizedData.email)
+      } else {
+        console.log('Email not configured - contact form submission logged:', sanitizedData.email)
+      }
     } catch (emailError) {
-      console.error('Failed to send email:', emailError)
-      // Don't fail the request if email fails, but log it
+      console.error('Email failed but form submission logged:', emailError)
+      // Don't fail the request if email fails
     }
     
     // Log contact form submission
@@ -175,14 +179,28 @@ export async function POST(request: NextRequest) {
         success: true, 
         message: 'Thank you for your message! I will get back to you soon.' 
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      }
     )
     
   } catch (error) {
     console.error('Contact form error:', error)
     return NextResponse.json(
-      { error: 'Internal server error. Please try again later.' },
-      { status: 500 }
+      { error: 'Something went wrong. Please try again later.' },
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      }
     )
   }
 }
