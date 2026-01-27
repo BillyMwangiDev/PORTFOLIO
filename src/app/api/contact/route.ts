@@ -170,10 +170,11 @@ export async function POST(request: NextRequest) {
       // Don't fail the request if email fails
     }
     
-    // Log contact form submission
-    console.log('Contact form submission:', {
-      ...sanitizedData,
-      message: sanitizedData.message.substring(0, 100) + '...' // Truncate for logging
+    // Log only non-sensitive metadata about the submission (no PII)
+    console.log('Contact form submission received', {
+      timestamp: sanitizedData.timestamp,
+      subjectLength: sanitizedData.subject.length,
+      messageLength: sanitizedData.message.length,
     })
     
     return NextResponse.json(
