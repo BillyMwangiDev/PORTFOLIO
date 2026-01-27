@@ -8,7 +8,6 @@ const PortfolioAnalytics = () => {
   const [analytics, setAnalytics] = useState({
     visitors: 0,
     pageViews: 0,
-    interactions: 0,
     timeOnSite: 0
   })
 
@@ -47,12 +46,6 @@ const PortfolioAnalytics = () => {
       label: 'Page Views',
       value: analytics.pageViews,
       color: 'text-green-600'
-    },
-    {
-      icon: MousePointer,
-      label: 'Interactions',
-      value: analytics.interactions,
-      color: 'text-purple-600'
     },
     {
       icon: Clock,
