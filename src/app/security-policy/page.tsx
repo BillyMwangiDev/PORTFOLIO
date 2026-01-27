@@ -47,7 +47,7 @@ const SecurityPolicy = () => {
               If you discover a security vulnerability, please report it to us responsibly:
             </p>
             <ul className="list-disc pl-6 mb-6 text-gray-600">
-              <li>Email: security@yourdomain.com</li>
+              <li>Email: billymwangi200@gmail.com</li>
               <li>Phone: +254 799 656 369</li>
               <li>Do not publicly disclose the vulnerability</li>
               <li>Provide sufficient details for reproduction</li>
@@ -82,7 +82,7 @@ const SecurityPolicy = () => {
                 For security-related inquiries or vulnerability reports:
               </p>
               <div className="space-y-2">
-                <p><strong>Security Team:</strong> security@yourdomain.com</p>
+                <p><strong>Security Team:</strong> billymwangi200@gmail.com</p>
                 <p><strong>Emergency Contact:</strong> +254 799 656 369</p>
                 <p><strong>Response Time:</strong> Within 24 hours for initial response</p>
               </div>
