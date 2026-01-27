@@ -24,18 +24,6 @@ const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
 const CONTACT_RATE_LIMIT_MAX = 10 // 10 submissions per window per IP
 const contactRateLimitStore = new Map<string, ContactRateLimitEntry>()
 
-// Periodic cleanup of expired rate limit entries to avoid unbounded memory growth
-const CONTACT_RATE_LIMIT_CLEANUP_INTERVAL_MS = 5 * 60 * 1000 // 5 minutes
-
-setInterval(() => {
-  const now = Date.now()
-  contactRateLimitStore.forEach((entry, key) => {
-    if (now >= entry.resetTime) {
-      contactRateLimitStore.delete(key)
-    }
-  })
-}, CONTACT_RATE_LIMIT_CLEANUP_INTERVAL_MS)
-
 
 // Email configuration
 const createTransporter = async () => {
@@ -129,6 +117,13 @@ export async function POST(request: NextRequest) {
 
     // Basic per-IP rate limiting to protect the contact form from abuse
     const now = Date.now()
+
+    // Cleanup expired entries on each request to avoid unbounded memory growth
+    contactRateLimitStore.forEach((entry, key) => {
+      if (now >= entry.resetTime) {
+        contactRateLimitStore.delete(key)
+      }
+    })
 
     const existing = contactRateLimitStore.get(ip)
 

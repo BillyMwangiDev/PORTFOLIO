@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Users, Eye, MousePointer, Clock } from 'lucide-react'
+import { Users, Eye, Clock } from 'lucide-react'
 
 const PortfolioAnalytics = () => {
   const [analytics, setAnalytics] = useState({

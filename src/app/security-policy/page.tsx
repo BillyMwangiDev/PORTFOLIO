@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 
+const SECURITY_POLICY_LAST_UPDATED = '2026-01-27'
+
 export const metadata: Metadata = {
   title: 'Security Policy - Billy Mwangi Portfolio',
   description: 'Security policy and responsible disclosure guidelines for Billy Mwangi\'s portfolio website.',
@@ -90,8 +92,8 @@ const SecurityPolicy = () => {
             
             <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-blue-800 text-sm">
-                <strong>Note:</strong> This security policy is regularly reviewed and updated. 
-                Last updated: {new Date().toLocaleDateString()}
+                <strong>Note:</strong> This security policy is regularly reviewed and updated.
+                Last updated: {SECURITY_POLICY_LAST_UPDATED}
               </p>
             </div>
           </div>
