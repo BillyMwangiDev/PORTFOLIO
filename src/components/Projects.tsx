@@ -22,101 +22,95 @@ const Projects = () => {
 
   const projects: Project[] = [
     {
-      title: 'TASKS - Desktop Task Manager',
-      description: 'A PyQt6 desktop application for productivity with task creation, stopwatch tracking, notifications, and SQLite storage. Features an intuitive GUI for managing daily tasks and time tracking.',
+      title: 'EleWatch - Wildlife Monitoring',
+      description:
+        'A Django-powered real-time wildlife tracking system for GPS-collared elephants, perimeter breach detection, and ranger response tracking.',
       image: '/api/placeholder/400/250',
-      tech: ['Python', 'PyQt6', 'SQLite'],
+      tech: ['Python', 'Django', 'Leaflet', 'Shapely', 'SQLite'],
       highlights: [
-        'Task creation and management with priority levels',
-        'Built-in stopwatch and time tracking',
-        'Desktop notifications and reminders',
-        'SQLite database for persistent storage',
-        'Cross-platform compatibility'
+        'Real-time elephant tracking on an interactive map',
+        'Automatic perimeter breach detection with geospatial checks',
+        'Ranger workflow and response-time tracking UI',
       ],
-      github: 'https://github.com/BillyMwangiDev/TASKS',
+      github: 'https://github.com/BillyMwangiDev/cursor_buildathorn',
       demo: null,
-      category: 'Desktop Application'
+      category: 'Web Application',
     },
     {
-      title: 'SALES-SYSTEM - Business Management',
-      description: 'Comprehensive Django web application for managing sales, inventory, VAT calculations, and analytics. Includes reporting, user authentication, and offline deployment capabilities.',
+      title: 'Movie Recommendation Backend',
+      description:
+        'Production-style backend architecture for a movie recommendation system with TMDb integration, GraphQL, caching, and async processing.',
       image: '/api/placeholder/400/250',
-      tech: ['Python', 'Django', 'SQLite', 'Bootstrap'],
+      tech: ['Python', 'Django', 'DRF', 'GraphQL', 'PostgreSQL', 'Redis', 'Celery'],
       highlights: [
-        'Sales tracking and inventory management',
-        'VAT calculations and financial reporting',
-        'User authentication and role management',
-        'Offline deployment and data synchronization',
-        'Responsive web interface'
+        'Scalable API design with REST and GraphQL endpoints',
+        'Background synchronization of external movie metadata',
+        'Multi-tier caching and rate-limited third-party integrations',
       ],
-      github: 'https://github.com/BillyMwangiDev/SALES-SYSTEM',
+      github: 'https://github.com/BillyMwangiDev/alx-project-nexus',
       demo: null,
-      category: 'Web Application'
+      category: 'Web Application',
     },
     {
-      title: 'ORGANIZE - File Automation Tool',
-      description: 'Cross-platform file organizer with drag-and-drop support, duplicate handling, and environment-based configuration. Automates file organization based on custom rules and patterns.',
+      title: 'Stock Soko - NSE Trading Platform',
+      description:
+        'A production-ready backend and mobile stack for an NSE trading platform with AI recommendations, M-Pesa integration, and learning center.',
       image: '/api/placeholder/400/250',
-      tech: ['Python', 'CLI', 'GUI', 'File System'],
+      tech: ['Python', 'FastAPI', 'SQLAlchemy', 'Celery', 'Redis', 'React Native', 'TypeScript'],
       highlights: [
-        'Drag-and-drop file organization',
-        'Duplicate file detection and handling',
-        'Environment-based configuration (.env)',
-        'Cross-platform compatibility',
-        'Custom organization rules'
+        'Real-time quotes, WebSocket streaming and trading APIs',
+        'M-Pesa payments, KYC, and bank-grade security patterns',
+        'Mobile app with learning modules and AI trading assistant',
+      ],
+      github: 'https://github.com/BillyMwangiDev/Stock-Soko',
+      demo: null,
+      category: 'Web Application',
+    },
+    {
+      title: 'Mfukoni - Finance Tracker with Custom RDBMS',
+      description:
+        'A personal finance tracker built on top of a custom SQL-capable RDBMS implemented from scratch, exposed through a Django web UI.',
+      image: '/api/placeholder/400/250',
+      tech: ['Python', 'Django', 'Custom RDBMS', 'Docker'],
+      highlights: [
+        'Custom SQL parser, storage engine, indexing and constraints',
+        'Budgets, categories, reports and dashboard on top of own DB',
+        'Interactive REPL plus fully containerized deployment',
+      ],
+      github: 'https://github.com/BillyMwangiDev/MFUKONI',
+      demo: null,
+      category: 'Web Application',
+    },
+    {
+      title: 'NICMAH AGROVET - E-commerce & POS',
+      description:
+        'A full-stack Django solution for an agrovet business, combining e‑commerce, in-shop POS, inventory, analytics, and educational content.',
+      image: '/api/placeholder/400/250',
+      tech: ['Python', 'Django', 'PostgreSQL', 'Tailwind', 'Docker'],
+      highlights: [
+        'Role-based user system for customers, sellers and managers',
+        'POS dashboard with sessions, receipts and commissions',
+        'Analytics, inventory tracking and educational hub for customers',
+      ],
+      github: 'https://github.com/BillyMwangiDev/NICMAH-E',
+      demo: null,
+      category: 'Web Application',
+    },
+    {
+      title: 'ORGANIZE - File Organizer',
+      description:
+        'A cross-platform desktop file organizer with drag-and-drop UI, smart categorization, conflict handling and Dockerized CLI mode.',
+      image: '/api/placeholder/400/250',
+      tech: ['Python', 'Tkinter', 'Docker'],
+      highlights: [
+        'Drag-and-drop desktop interface for organizing folders',
+        'Rule-based categorization into 13+ smart folders',
+        'Configurable duplicate handling and strong test coverage',
       ],
       github: 'https://github.com/BillyMwangiDev/ORGANIZE',
       demo: null,
-      category: 'Automation Tool'
+      category: 'Desktop Application',
     },
-    {
-      title: 'E-commerce Agrovet Website',
-      description: 'Full-featured e-commerce platform for agricultural and veterinary products. Built with modern web technologies for scalability and user experience.',
-      image: '/api/placeholder/400/250',
-      tech: ['React', 'Django', 'PostgreSQL', 'Stripe'],
-      highlights: [
-        'Product catalog and search functionality',
-        'Shopping cart and checkout system',
-        'Payment integration with Stripe',
-        'Admin dashboard for inventory',
-        'Responsive mobile-first design'
-      ],
-      github: 'https://github.com/BillyMwangiDev',
-      demo: null,
-      category: 'E-commerce'
-    },
-    {
-      title: 'IoT Cattle Management System',
-      description: 'Internet of Things solution for monitoring and managing cattle health, location, and feeding schedules using sensors and mobile applications.',
-      image: '/api/placeholder/400/250',
-      tech: ['Python', 'IoT Sensors', 'Mobile App', 'Cloud Database'],
-      highlights: [
-        'Real-time cattle health monitoring',
-        'GPS tracking and geofencing',
-        'Automated feeding schedules',
-        'Mobile app for farmers',
-        'Cloud-based data storage'
-      ],
-      github: 'https://github.com/BillyMwangiDev',
-      demo: null,
-      category: 'IoT Solution'
-    },
-    {
-      title: 'Tech Tribe Education App',
-      description: 'Educational platform for tech learning with interactive courses, progress tracking, and community features for developers and IT professionals.',
-      image: '/api/placeholder/400/250',
-      tech: ['React Native', 'Node.js', 'MongoDB', 'Firebase'],
-      highlights: [
-        'Interactive course content',
-        'Progress tracking and certifications',
-        'Community forums and discussions',
-        'Mobile-first responsive design',
-        'Real-time notifications'
-      ],
-      github: 'https://github.com/BillyMwangiDev',
-      demo: null,
-      category: 'Educational Platform'
-    }
   ]
 
   const getCategoryIcon = (category: string) => {
@@ -139,7 +133,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
+    <section id="projects" className="bg-slate-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}

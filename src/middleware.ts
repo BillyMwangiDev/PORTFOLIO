@@ -16,11 +16,18 @@ const rateLimitStore = new Map<string, RateLimitEntry>()
 // Enhanced rate limiting configuration
 const RATE_LIMITS = {
   general: { max: 100, windowMs: 15 * 60 * 1000 }, // 100 requests per 15 minutes
-  contact: { max: 5, windowMs: 15 * 60 * 1000 },   // 5 contact form submissions per 15 minutes
+  contact: { max: 10, windowMs: 15 * 60 * 1000 },  // 10 contact form submissions per 15 minutes
   auth: { max: 10, windowMs: 15 * 60 * 1000 }      // 10 auth attempts per 15 minutes
 }
 
 export function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname
+  
+  // Skip middleware for API routes
+  if (path.startsWith('/api/')) {
+    return NextResponse.next()
+  }
+  
   const response = NextResponse.next()
   
   // Enhanced security headers
@@ -33,16 +40,10 @@ export function middleware(request: NextRequest) {
              request.headers.get('x-real-ip') || 
              request.headers.get('cf-connecting-ip') || 
              'unknown'
-  const path = request.nextUrl.pathname
   const now = Date.now()
   
-  // Determine rate limit based on route
-  let rateLimit = RATE_LIMITS.general
-  if (path.startsWith('/api/contact')) {
-    rateLimit = RATE_LIMITS.contact
-  } else if (path.startsWith('/api/auth')) {
-    rateLimit = RATE_LIMITS.auth
-  }
+  // Determine rate limit based on route (can be extended for per-path rules)
+  const rateLimit = RATE_LIMITS.general
   
   const current = rateLimitStore.get(ip)
   
@@ -142,6 +143,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api/|_next/static|_next/image|favicon.ico).*)',
   ],
 }

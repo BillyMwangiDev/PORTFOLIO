@@ -5,14 +5,17 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Billy Mwangi - IT Admin & Software Engineer',
-  description: 'Professional portfolio of Billy Mwangi, IT Administrator and Software Engineer specializing in system administration, software development, and IT solutions.',
-  keywords: 'Billy Mwangi, IT Admin, Software Engineer, Portfolio, System Administration, Software Development',
+  title: 'Billy Mwangi - System Administrator & Backend Developer',
+  description:
+    'Portfolio of Billy Mwangi, a System Administrator and backend developer in training at ALX, focused on AI-driven and locally tailored solutions that combine system reliability, automation, and modern backend development.',
+  keywords:
+    'Billy Mwangi, System Administrator, Backend Developer, ALX, Portfolio, Automation, AI-driven solutions, Django, Python',
   authors: [{ name: 'Billy Mwangi' }],
   creator: 'Billy Mwangi',
   openGraph: {
-    title: 'Billy Mwangi - IT Admin & Software Engineer',
-    description: 'Professional portfolio showcasing IT administration and software engineering expertise',
+    title: 'Billy Mwangi - System Administrator & Backend Developer',
+    description:
+      'System Administrator and backend developer in training at ALX, building AI-assisted, reliable and locally relevant solutions for real-world problems.',
     type: 'website',
     locale: 'en_US',
   },

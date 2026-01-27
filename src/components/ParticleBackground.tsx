@@ -1,6 +1,19 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 const ParticleBackground = () => {
+  // Avoid hydration mismatches by only rendering randomised particles on the client
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {/* Animated particles using CSS */}
@@ -16,7 +29,7 @@ const ParticleBackground = () => {
           }}
         />
       ))}
-      
+
       {/* Floating elements */}
       {Array.from({ length: 20 }).map((_, i) => (
         <div
@@ -30,13 +43,13 @@ const ParticleBackground = () => {
           }}
         />
       ))}
-      
+
       {/* Connecting lines effect */}
       <div className="absolute inset-0 opacity-20">
-        <svg className="w-full h-full">
+        <svg className="h-full w-full">
           <defs>
             <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#3B82F6" strokeWidth="0.5"/>
+              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#3B82F6" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />

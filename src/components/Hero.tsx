@@ -1,6 +1,6 @@
 'use client'
 
-import { Download, Mail, ArrowDown } from 'lucide-react'
+import { Download, Mail, ArrowDown, CheckCircle2 } from 'lucide-react'
 import Image from 'next/image'
 import ParticleBackground from './ParticleBackground'
 import { motion } from 'framer-motion'
@@ -9,8 +9,8 @@ const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link element to download the PDF
     const link = document.createElement('a')
-    link.href = '/Billy_Mwangi.pdf'
-    link.download = 'Billy_Mwangi_Resume.pdf'
+    link.href = '/Billy_Gichugu_Mwangi_CV.pdf'
+    link.download = 'Billy_Gichugu_Mwangi_CV.pdf'
     link.click()
   }
 
@@ -20,141 +20,182 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 min-h-screen flex items-center relative overflow-hidden">
-      {/* Particle Background */}
-      <ParticleBackground />
-      
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 pt-24 pb-16"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <ParticleBackground />
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          {/* Unified Content Box with Integrated Picture */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-gray-100/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl border border-gray-200 overflow-hidden"
+            className="overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-xl backdrop-blur-sm lg:p-12"
           >
-            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-              {/* Text Content - Left Side */}
+            <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-stretch">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex-1 text-center lg:text-left"
+                className="flex-1 text-center lg:flex lg:flex-col lg:justify-center lg:text-left"
               >
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6"
+                  className="mb-4 text-4xl font-semibold leading-tight text-slate-900 md:text-5xl lg:text-6xl"
                 >
-                  Billy Mwangi
+                  The systems-minded engineer<br className="hidden md:block" /> behind reliable tech
                 </motion.h1>
-                
+
                 <motion.h2
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
-                  className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 mb-6"
+                  className="mb-4 text-lg font-medium text-slate-700 md:text-xl"
                 >
-                  Building the Future, One Line of Code at a Time
+                  Reach new heights with an IT admin & backend engineer
+                  who cares about uptime, clean code, and real business impact.
                 </motion.h2>
-                
+
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.0 }}
-                  className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8"
+                  className="mb-8 max-w-xl text-sm text-slate-600 md:text-base"
                 >
-                  I&apos;m Billy, a Systems Administrator who enjoys building things that actually work. For me, there&apos;s something magical about writing code that solves real problems and seeing it run smoothly in production. I care about seeing systems make impact in the world, reliable systems, and finding smarter ways to work, often by using AI tools to speed up development without sacrificing quality. These days, I&apos;m diving deep into backend development with Python and Django, combining my infrastructure know-how with modern web development to create systems that are both robust and scalable.
+                  I blend years of systems administration with modern backend
+                  development in Python & Django to build infrastructure-aware
+                  applications that are stable, scalable, and easy to operate.
                 </motion.p>
 
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.2 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                  className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-start"
                 >
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleContact}
-                    className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                    className="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-slate-800"
                   >
                     <Mail className="mr-3" size={22} />
-                    Let&apos;s Connect
+                    Let&apos;s talk about your next project
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleDownloadResume}
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-600 hover:text-white transition-colors duration-200 cursor-pointer"
+                    className="inline-flex items-center justify-center rounded-full border border-slate-300 px-8 py-3 text-sm font-semibold text-slate-900 transition-colors duration-200 hover:border-slate-900 hover:bg-slate-900 hover:text-white"
                   >
                     <Download className="mr-3" size={22} />
-                    Download Resume
+                    Download resume
                   </motion.button>
+                </motion.div>
+
+                {/* Feature pills mirroring Tana-style value props */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.4 }}
+                  className="mt-8 grid gap-2 text-left text-xs text-slate-600 sm:grid-cols-2 md:text-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-600">
+                      <CheckCircle2 size={14} />
+                    </span>
+                    <span>Tech‑savvy across systems, cloud & backend</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                      <CheckCircle2 size={14} />
+                    </span>
+                    <span>Clear communication, documentation & handover</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                      <CheckCircle2 size={14} />
+                    </span>
+                    <span>Timezone aligned with EMEA teams</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                      <CheckCircle2 size={14} />
+                    </span>
+                    <span>Cost‑effective without cutting corners on quality</span>
+                  </div>
                 </motion.div>
               </motion.div>
 
-              {/* Profile Picture - Integrated into the box */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex-shrink-0"
+                className="flex flex-1 items-center justify-center lg:justify-end"
               >
                 <div className="relative">
                   <motion.div
                     whileHover={{ scale: 1.05, rotate: 2 }}
                     transition={{ duration: 0.3 }}
-                    className="w-64 h-64 lg:w-72 lg:h-72 rounded-full shadow-2xl overflow-hidden border-4 border-blue-200 bg-white relative"
+                    className="relative h-72 w-72 overflow-hidden rounded-[2.25rem] border border-slate-200 bg-transparent shadow-2xl sm:h-80 sm:w-80 lg:h-96 lg:w-96"
                   >
                     <Image
                       src="/profile-photo.jpg"
                       alt="Billy Mwangi - IT Administrator & Software Engineer"
-                      width={288}
-                      height={288}
-                      className="w-full h-full object-cover"
+                      width={384}
+                      height={384}
+                      className="h-full w-full object-cover"
                       priority
                     />
-                    
-                    {/* Subtle gradient overlay for depth */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10" />
+
+                    {/* Soft radial + vertical blend so the portrait melts into the page background */}
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.85),_transparent_60%),linear-gradient(to-bottom,rgba(248,250,252,0.9),transparent_55%)] mix-blend-soft-light" />
+
+                    <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/90 p-3 text-left shadow-lg backdrop-blur">
+                      <p className="text-xs font-medium text-slate-500">
+                        IT Admin • Backend Engineering • DevOps‑minded
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-slate-900">
+                        Helping teams ship reliable systems faster.
+                      </p>
+                    </div>
                   </motion.div>
-                  
-                  {/* Enhanced decorative elements */}
                   <motion.div
                     animate={{ rotate: 360, scale: [1, 1.1, 1] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full shadow-lg border-2 border-white"
+                    className="absolute -right-4 -top-4 h-10 w-10 rounded-full border-2 border-white bg-gradient-to-br from-sky-400 to-blue-600 shadow-lg"
                   />
                   <motion.div
                     animate={{ rotate: -360, scale: [1, 1.2, 1] }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute -bottom-3 -left-3 w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full shadow-lg border-2 border-white"
+                    className="absolute -bottom-4 -left-4 h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg"
                   />
-                  
-                  {/* Additional floating element */}
                   <motion.div
                     animate={{ y: [0, -10, 0], rotate: [0, 180, 360] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-1/2 -right-6 w-4 h-4 bg-blue-300/60 rounded-full"
+                    className="absolute top-1/2 -right-6 h-5 w-5 rounded-full bg-sky-300/70"
                   />
                 </div>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="text-center mt-12"
+            className="mt-10 text-center"
           >
             <div className="flex items-center justify-center">
               <motion.div
@@ -164,7 +205,9 @@ const Hero = () => {
               >
                 <ArrowDown className="text-blue-600" size={24} />
               </motion.div>
-              <span className="ml-3 text-gray-600 text-lg">Scroll to explore</span>
+              <span className="ml-3 text-sm text-slate-500 md:text-base">
+                Scroll to explore the work behind the profile
+              </span>
             </div>
           </motion.div>
         </motion.div>

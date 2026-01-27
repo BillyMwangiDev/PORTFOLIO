@@ -240,24 +240,16 @@ const Contact = () => {
             >
               <h3 className="text-xl font-bold text-blue-900 mb-4">My Story on Paper</h3>
               <p className="text-blue-800 text-sm mb-6">
-                Want to know more about my journey? Here&apos;s a detailed look at my experience and the path that led me here.
+                Want to know more about my journey? Here&apos;s a detailed look at my experience, certifications, and the projects I&apos;ve been building.
               </p>
               <div className="space-y-3">
                 <a
-                  href="/Billy_Mwangi.pdf"
+                  href="/Billy_Gichugu_Mwangi_CV.pdf"
                   download
                   className="flex items-center justify-center w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
                 >
                   <Download className="w-5 h-5 mr-2" />
-                  Download PDF Resume
-                </a>
-                <a
-                  href="/Billy_Mwangi.docx"
-                  download
-                  className="flex items-center justify-center w-full px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-200"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download DOCX Resume
+                  Download PDF CV
                 </a>
               </div>
             </motion.div>

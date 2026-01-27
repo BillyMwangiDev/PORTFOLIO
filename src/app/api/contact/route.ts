@@ -12,8 +12,7 @@ const contactSchema = z.object({
   website: z.string().max(0, 'Invalid submission')
 })
 
-// Rate limiting store for contact form
-const contactRateLimit = new Map<string, { count: number; resetTime: number }>()
+// Rate limiting is handled by middleware
 
 
 // Escape HTML to prevent XSS while preserving content
@@ -117,34 +116,11 @@ This message was sent from your portfolio contact form at billymwangi.com
 
 export async function POST(request: NextRequest) {
   try {
-    const ip = request.headers.get('x-forwarded-for') || 
-                request.headers.get('x-real-ip') || 
-                'unknown'
-    const now = Date.now()
-    
-    // Rate limiting for contact form
-    const rateLimit = contactRateLimit.get(ip)
-    if (rateLimit && now < rateLimit.resetTime) {
-      if (rateLimit.count >= 5) { // 5 submissions per 15 minutes
-        return NextResponse.json(
-          { error: 'Too many contact form submissions. Please try again later.' },
-          { status: 429, headers: { 'Retry-After': '900' } }
-        )
-      }
-      rateLimit.count++
-    } else {
-      contactRateLimit.set(ip, {
-        count: 1,
-        resetTime: now + (15 * 60 * 1000) // 15 minutes
-      })
-    }
-    
-    // Clean up old rate limit entries
-    contactRateLimit.forEach((value, key) => {
-      if (now > value.resetTime) {
-        contactRateLimit.delete(key)
-      }
-    })
+    const ip = request.headers.get('x-forwarded-for') ||
+               request.headers.get('x-real-ip') ||
+               'unknown'
+
+    // Rate limiting is handled by middleware
     
     const body = await request.json()
     

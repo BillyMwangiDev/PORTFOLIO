@@ -17,85 +17,85 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 shadow-lg"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            className="flex-shrink-0"
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center space-x-2 focus:outline-none"
           >
-            <h1 className="text-xl font-bold text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer">
-              Billy Mwangi
-            </h1>
-          </motion.div>
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white text-lg font-bold">
+              B
+            </div>
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-sm font-semibold text-slate-900 tracking-tight">
+                Billy Mwangi
+              </span>
+              <span className="text-xs text-slate-500">
+                IT Admin & Engineer
+              </span>
+            </div>
+          </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item, index) => (
-                <motion.a
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-6 text-sm font-medium">
+              {navItems.map((item) => (
+                <a
                   key={item.name}
                   href={item.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -2 }}
-                  className="text-white hover:text-gray-300 px-3 py-2 text-sm font-medium transition-colors duration-200 relative group"
+                  className="relative text-slate-600 hover:text-slate-900 transition-colors duration-200"
                 >
                   {item.name}
-                  <motion.span
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="absolute bottom-0 left-0 h-0.5 bg-blue-400 group-hover:bg-blue-300"
-                  />
-                </motion.a>
+                  <span className="pointer-events-none absolute -bottom-1 left-0 h-0.5 w-0 bg-blue-600 transition-all duration-200 group-hover:w-full" />
+                </a>
               ))}
             </div>
+            <a
+              href="#contact"
+              className="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 transition-colors duration-200"
+            >
+              Let&apos;s talk
+            </a>
           </div>
 
           {/* Mobile menu button */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="md:hidden"
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden inline-flex items-center justify-center rounded-full p-2 text-slate-700 hover:bg-slate-100 transition-colors duration-200"
+            aria-label="Toggle menu"
           >
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-gray-300 p-2 transition-colors duration-200"
-              aria-label="Toggle menu"
-            >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X size={24} />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu size={24} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-          </motion.div>
+            <AnimatePresence mode="wait">
+              {isMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <X size={22} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <Menu size={22} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
@@ -103,26 +103,32 @@ const Navigation = () => {
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
               className="md:hidden overflow-hidden"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800 border-t border-gray-800">
+              <div className="space-y-1 border-t border-gray-200 bg-white px-4 pt-2 pb-4">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    whileHover={{ x: 5, color: '#60A5FA' }}
-                    className="text-white hover:text-gray-300 block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200"
+                    transition={{ duration: 0.2, delay: 0.02 * index }}
                     onClick={() => setIsMenuOpen(false)}
+                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                   >
                     {item.name}
                   </motion.a>
                 ))}
+                <a
+                  href="#contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="mt-2 flex w-full items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800"
+                >
+                  Let&apos;s talk
+                </a>
               </div>
             </motion.div>
           )}
