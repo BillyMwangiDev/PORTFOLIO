@@ -8,7 +8,7 @@ const services = [
   {
     icon: ServerCog,
     title: 'Backend & APIs',
-    body: 'Design and implement clean, well‑documented APIs in Python/Django and FastAPI, backed by relational databases that are easy to evolve.',
+    body: 'Design and implement clean, well-documented APIs in Python/Django and FastAPI, backed by relational databases that are easy to evolve.',
     points: ['REST & GraphQL APIs', 'Authentication & authorization', 'Database design & migrations'],
   },
   {
@@ -20,7 +20,7 @@ const services = [
   {
     icon: Lightbulb,
     title: 'Technical consulting',
-    body: 'Help teams reason about trade‑offs, improve reliability, and modernize systems without stopping the business.',
+    body: 'Help teams reason about trade-offs, improve reliability, and modernize systems without stopping the business.',
     points: ['Architecture reviews', 'Migration planning', 'Developer enablement & documentation'],
   },
 ]
@@ -43,7 +43,7 @@ const Services = () => {
             How I can help your team
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-slate-600">
-            Whether you need someone to own a backend project end‑to‑end or reinforce your
+            Whether you need someone to own a backend project end-to-end or reinforce your
             infrastructure, I slot into existing teams smoothly.
           </p>
         </motion.div>

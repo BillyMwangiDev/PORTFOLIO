@@ -19,7 +19,7 @@ const ReadyToWork = () => {
           href="#contact"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.96 }}
-          className="inline-flex items-center rounded-full bg-slate-50 px-8 py-3 text-sm font-semibold text-slate-900 shadow-md transition-colors duration-200 hover:bg-slate-200"
+          className="inline-flex items-center rounded-full bg-slate-50 px-8 py-3 text-sm font-semibold text-slate-900 shadow-md transition-colors duration-200 hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-50 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
         >
           Let&apos;s talk
         </motion.a>

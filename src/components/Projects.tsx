@@ -5,6 +5,14 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 // Type definitions for better type safety
+type ProjectCategory =
+  | 'Desktop Application'
+  | 'Web Application'
+  | 'Automation Tool'
+  | 'E-commerce'
+  | 'IoT Solution'
+  | 'Educational Platform'
+
 interface Project {
   title: string
   description: string
@@ -13,14 +21,10 @@ interface Project {
   highlights: string[]
   github: string
   demo: string | null
-  category: string
+  category: ProjectCategory
 }
 
-const Projects = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
-  const projects: Project[] = [
+const projects: Project[] = [
     {
       title: 'EleWatch - Wildlife Monitoring',
       description:
@@ -84,7 +88,7 @@ const Projects = () => {
     {
       title: 'NICMAH AGROVET - E-commerce & POS',
       description:
-        'A full-stack Django solution for an agrovet business, combining e‑commerce, in-shop POS, inventory, analytics, and educational content.',
+        'A full-stack Django solution for an agrovet business, combining e-commerce, in-shop POS, inventory, analytics, and educational content.',
       image: '/api/placeholder/400/250',
       tech: ['Python', 'Django', 'PostgreSQL', 'Tailwind', 'Docker'],
       highlights: [
@@ -113,7 +117,7 @@ const Projects = () => {
     },
   ]
 
-  const getCategoryIcon = (category: string) => {
+const getCategoryIcon = (category: ProjectCategory) => {
     switch (category) {
       case 'Desktop Application':
         return <Code className="w-5 h-5" />
@@ -131,6 +135,10 @@ const Projects = () => {
         return <Code className="w-5 h-5" />
     }
   }
+
+const Projects = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section id="projects" className="bg-slate-50 py-20">
@@ -188,7 +196,7 @@ const Projects = () => {
                 <motion.h3
                   whileHover={{ color: '#3B82F6' }}
                   transition={{ duration: 0.3 }}
-                  className="text-xl font-bold text-gray-900 mb-3 cursor-pointer"
+                  className="text-xl font-bold text-gray-900 mb-3"
                 >
                   {project.title}
                 </motion.h3>

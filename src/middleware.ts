@@ -23,17 +23,20 @@ const RATE_LIMITS = {
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
   
-  // Skip middleware for API routes
-  if (path.startsWith('/api/')) {
-    return NextResponse.next()
-  }
-  
   const response = NextResponse.next()
-  
-  // Enhanced security headers
+
+  // Always apply core security headers (including for API routes)
+  response.headers.set('X-Content-Type-Options', 'nosniff')
+  response.headers.set('X-Frame-Options', 'DENY')
+  response.headers.set('X-XSS-Protection', '1; mode=block')
   response.headers.set('X-DNS-Prefetch-Control', 'off')
   response.headers.set('X-Download-Options', 'noopen')
   response.headers.set('X-Permitted-Cross-Domain-Policies', 'none')
+
+  // Skip rate limiting and path checks for API routes but keep security headers
+  if (path.startsWith('/api/')) {
+    return response
+  }
   
   // Rate limiting with different rules per route
   const ip = request.headers.get('x-forwarded-for') || 
@@ -80,13 +83,15 @@ export function middleware(request: NextRequest) {
     })
   }
   
-  // Clean up old entries
-  rateLimitStore.forEach((value, key) => {
-    if (now > value.resetTime && !value.blocked) {
-      rateLimitStore.delete(key)
-    }
-  })
-  
+  // Probabilistic cleanup of old entries to reduce per-request overhead
+  if (Math.random() < 0.01) {
+    rateLimitStore.forEach((value, key) => {
+      if (now > value.resetTime && !value.blocked) {
+        rateLimitStore.delete(key)
+      }
+    })
+  }
+
   // Enhanced bot protection - only block clearly malicious user agents
   const userAgent = request.headers.get('user-agent') || ''
   const maliciousPatterns = [
@@ -126,11 +131,8 @@ export function middleware(request: NextRequest) {
     }
   }
   
-  // Add security headers to response
-  response.headers.set('X-Content-Type-Options', 'nosniff')
-  response.headers.set('X-Frame-Options', 'DENY')
-  response.headers.set('X-XSS-Protection', '1; mode=block')
-  
+  // response already has core security headers set above
+
   return response
 }
 

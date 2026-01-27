@@ -8,7 +8,7 @@ const valueProps = [
   {
     icon: CheckCircle2,
     title: 'Systems-first mindset',
-    body: 'I think like an SRE and a backend engineer at the same time—designing features that are easier to run, monitor, and debug in production.',
+    body: 'I think like an SRE and a backend engineer at the same time, designing features that are easier to run, monitor, and debug in production.',
   },
   {
     icon: ShieldCheck,
@@ -18,12 +18,12 @@ const valueProps = [
   {
     icon: Zap,
     title: 'Bias for automation',
-    body: 'If it needs to be done twice, I try to script it—saving time, reducing errors, and leaving teams with tools they can reuse.',
+    body: 'If it needs to be done twice, I try to script it, saving time, reducing errors, and leaving teams with tools they can reuse.',
   },
   {
     icon: Layers,
     title: 'Clear communication',
-    body: 'I document decisions, explain trade‑offs, and keep stakeholders in the loop so work never feels like a black box.',
+    body: 'I document decisions, explain trade-offs, and keep stakeholders in the loop so work never feels like a black box.',
   },
 ]
 
@@ -60,7 +60,7 @@ const WhyWorkWithMe = () => {
               className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 shadow-sm"
             >
               <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-slate-50">
-                <item.icon size={20} />
+                <item.icon size={20} aria-hidden="true" />
               </div>
               <div>
                 <h3 className="mb-1 text-base font-semibold text-slate-900">{item.title}</h3>

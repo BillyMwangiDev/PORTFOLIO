@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import { escapeHTML, sanitizeInput } from '@/lib/security'
 
 // Contact form validation schema
 const contactSchema = z.object({
@@ -12,24 +13,17 @@ const contactSchema = z.object({
   website: z.string().max(0, 'Invalid submission')
 })
 
-// Rate limiting is handled by middleware
-
-
-// Escape HTML to prevent XSS while preserving content
-function escapeHtml(input: string): string {
-  return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-    .replace(/`/g, '&#96;')
+// Simple in-memory rate limiting for the contact form (per IP)
+// NOTE: For real production use, replace this with Redis or a database-backed store.
+interface ContactRateLimitEntry {
+  count: number
+  resetTime: number
 }
 
-// Sanitize input for plain text storage (preserves content, only trims)
-function sanitizeInput(input: string): string {
-  return input.trim()
-}
+const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
+const CONTACT_RATE_LIMIT_MAX = 10 // 10 submissions per window per IP
+const contactRateLimitStore = new Map<string, ContactRateLimitEntry>()
+
 
 // Email configuration
 const createTransporter = async () => {
@@ -65,7 +59,7 @@ async function sendEmail(data: {
   
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: 'billymwangi200@gmail.com',
+    to: process.env.CONTACT_RECIPIENT || process.env.EMAIL_USER,
     subject: `Portfolio Contact: ${data.subject}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -75,16 +69,16 @@ async function sendEmail(data: {
         
         <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
-          <p><strong>Name:</strong> ${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</p>
-          <p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
-          <p><strong>Subject:</strong> ${escapeHtml(data.subject)}</p>
+          <p><strong>Name:</strong> ${escapeHTML(data.firstName)} ${escapeHTML(data.lastName)}</p>
+          <p><strong>Email:</strong> <a href="mailto:${escapeHTML(data.email)}">${escapeHTML(data.email)}</a></p>
+          <p><strong>Subject:</strong> ${escapeHTML(data.subject)}</p>
           <p><strong>Submitted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
-          <p><strong>IP Address:</strong> ${escapeHtml(data.ip)}</p>
+          <p><strong>IP Address:</strong> ${escapeHTML(data.ip)}</p>
         </div>
         
         <div style="background-color: #ffffff; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
           <h3 style="color: #374151; margin-top: 0;">Message</h3>
-          <div style="white-space: pre-wrap; line-height: 1.6;">${escapeHtml(data.message)}</div>
+          <div style="white-space: pre-wrap; line-height: 1.6;">${escapeHTML(data.message)}</div>
         </div>
         
         <div style="margin-top: 20px; padding: 15px; background-color: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
@@ -120,7 +114,24 @@ export async function POST(request: NextRequest) {
                request.headers.get('x-real-ip') ||
                'unknown'
 
-    // Rate limiting is handled by middleware
+    // Basic per-IP rate limiting to protect the contact form from abuse
+    const now = Date.now()
+    const existing = contactRateLimitStore.get(ip)
+
+    if (existing && now < existing.resetTime) {
+      if (existing.count >= CONTACT_RATE_LIMIT_MAX) {
+        return NextResponse.json(
+          { error: 'Too many submissions from this IP. Please try again later.' },
+          { status: 429 }
+        )
+      }
+      existing.count += 1
+    } else {
+      contactRateLimitStore.set(ip, {
+        count: 1,
+        resetTime: now + CONTACT_RATE_LIMIT_WINDOW_MS
+      })
+    }
     
     const body = await request.json()
     

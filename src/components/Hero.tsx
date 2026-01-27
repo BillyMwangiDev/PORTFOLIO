@@ -9,8 +9,8 @@ const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link element to download the PDF
     const link = document.createElement('a')
-    link.href = '/Billy_Gichugu_Mwangi_CV.pdf'
-    link.download = 'Billy_Gichugu_Mwangi_CV.pdf'
+    link.href = '/Billy_Mwangi.pdf'
+    link.download = 'Billy_Mwangi.pdf'
     link.click()
   }
 
@@ -115,7 +115,7 @@ const Hero = () => {
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-sky-600">
                       <CheckCircle2 size={14} />
                     </span>
-                    <span>Tech‑savvy across systems, cloud & backend</span>
+                    <span>Tech-savvy across systems, cloud & backend</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
@@ -133,7 +133,7 @@ const Hero = () => {
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600">
                       <CheckCircle2 size={14} />
                     </span>
-                    <span>Cost‑effective without cutting corners on quality</span>
+                    <span>Cost-effective without cutting corners on quality</span>
                   </div>
                 </motion.div>
               </motion.div>
@@ -164,7 +164,7 @@ const Hero = () => {
 
                     <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/90 p-3 text-left shadow-lg backdrop-blur">
                       <p className="text-xs font-medium text-slate-500">
-                        IT Admin • Backend Engineering • DevOps‑minded
+                        IT Admin • Backend Engineering • DevOps-minded
                       </p>
                       <p className="mt-1 text-sm font-semibold text-slate-900">
                         Helping teams ship reliable systems faster.

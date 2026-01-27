@@ -13,10 +13,11 @@ const PortfolioAnalytics = () => {
   })
 
   useEffect(() => {
-    // Track page view on mount
+    // Local, browser-only analytics demo for this session
     setAnalytics(prev => ({
       ...prev,
-      pageViews: prev.pageViews + 1
+      visitors: 1,
+      pageViews: prev.pageViews + 1,
     }))
 
     // Track time on site
@@ -29,19 +30,8 @@ const PortfolioAnalytics = () => {
       }))
     }, 1000)
 
-    // Simulate analytics data (replace with real analytics service)
-    const analyticsInterval = setInterval(() => {
-      setAnalytics(prev => ({
-        visitors: prev.visitors + Math.floor(Math.random() * 3),
-        pageViews: prev.pageViews + Math.floor(Math.random() * 5),
-        interactions: prev.interactions + Math.floor(Math.random() * 2),
-        timeOnSite: prev.timeOnSite // Keep current time, don't add random
-      }))
-    }, 5000)
-
     return () => {
       clearInterval(timeTracker)
-      clearInterval(analyticsInterval)
     }
   }, []) // Empty dependency array ensures this runs only once
 
@@ -107,7 +97,7 @@ const PortfolioAnalytics = () => {
 
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-500">
-          Real-time engagement tracking • Updated every 5 seconds
+          Local demo metrics for this browser session (no real traffic data is collected).
         </p>
       </div>
     </motion.div>

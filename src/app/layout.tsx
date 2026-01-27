@@ -5,6 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://billymwangi.com'),
   title: 'Billy Mwangi - System Administrator & Backend Developer',
   description:
     'Portfolio of Billy Mwangi, a System Administrator and backend developer in training at ALX, focused on AI-driven and locally tailored solutions that combine system reliability, automation, and modern backend development.',
