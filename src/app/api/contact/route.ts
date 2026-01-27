@@ -24,6 +24,18 @@ const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
 const CONTACT_RATE_LIMIT_MAX = 10 // 10 submissions per window per IP
 const contactRateLimitStore = new Map<string, ContactRateLimitEntry>()
 
+// Periodic cleanup of expired rate limit entries to avoid unbounded memory growth
+const CONTACT_RATE_LIMIT_CLEANUP_INTERVAL_MS = 5 * 60 * 1000 // 5 minutes
+
+setInterval(() => {
+  const now = Date.now()
+  contactRateLimitStore.forEach((entry, key) => {
+    if (now >= entry.resetTime) {
+      contactRateLimitStore.delete(key)
+    }
+  })
+}, CONTACT_RATE_LIMIT_CLEANUP_INTERVAL_MS)
+
 
 // Email configuration
 const createTransporter = async () => {
@@ -60,6 +72,7 @@ async function sendEmail(data: {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.CONTACT_RECIPIENT || process.env.EMAIL_USER,
+    replyTo: data.email,
     subject: `Portfolio Contact: ${data.subject}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -116,6 +129,7 @@ export async function POST(request: NextRequest) {
 
     // Basic per-IP rate limiting to protect the contact form from abuse
     const now = Date.now()
+
     const existing = contactRateLimitStore.get(ip)
 
     if (existing && now < existing.resetTime) {
@@ -161,9 +175,9 @@ export async function POST(request: NextRequest) {
     try {
       if (process.env.EMAIL_USER && (process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD)) {
         await sendEmail(sanitizedData)
-        console.log('Email sent successfully for contact form submission from:', sanitizedData.email)
+        console.log('Email sent successfully for contact form submission')
       } else {
-        console.log('Email not configured - contact form submission logged:', sanitizedData.email)
+        console.log('Email not configured - contact form submission logged')
       }
     } catch (emailError) {
       console.error('Email failed but form submission logged:', emailError)
