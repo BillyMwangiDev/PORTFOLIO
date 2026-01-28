@@ -1,0 +1,231 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+import { escapeHTML, sanitizeInput } from '@/lib/security'
+
+// Contact form validation schema
+const contactSchema = z.object({
+  firstName: z.string().min(1, 'First name is required').max(50, 'First name too long'),
+  lastName: z.string().min(1, 'Last name is required').max(50, 'Last name too long'),
+  email: z.string().email('Invalid email address'),
+  subject: z.string().min(1, 'Subject is required').max(100, 'Subject too long'),
+  message: z.string().min(10, 'Message must be at least 10 characters').max(1000, 'Message too long'),
+  // Honeypot field - should be empty
+  website: z.string().max(0, 'Invalid submission')
+})
+
+// Simple in-memory rate limiting for the contact form (per IP)
+// NOTE: For real production use, replace this with Redis or a database-backed store.
+interface ContactRateLimitEntry {
+  count: number
+  resetTime: number
+}
+
+const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
+const CONTACT_RATE_LIMIT_MAX = 10 // 10 submissions per window per IP
+const contactRateLimitStore = new Map<string, ContactRateLimitEntry>()
+
+
+// Email configuration
+const createTransporter = async () => {
+  const nodemailer = await import('nodemailer')
+  const user = process.env.EMAIL_USER
+  const pass = process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD
+  
+  if (!user || !pass) {
+    throw new Error('Email credentials are not configured')
+  }
+  
+  return nodemailer.default.createTransport({
+    service: 'gmail',
+    auth: { user, pass },
+    // Add timeout and connection options
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,   // 10 seconds
+    socketTimeout: 10000      // 10 seconds
+  })
+}
+
+// Send email function
+async function sendEmail(data: {
+  firstName: string
+  lastName: string
+  email: string
+  subject: string
+  message: string
+  ip: string
+  timestamp: string
+}) {
+  const transporter = await createTransporter()
+  
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.CONTACT_RECIPIENT || process.env.EMAIL_USER,
+    replyTo: data.email,
+    subject: `Portfolio Contact: ${data.subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #2563eb; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+          New Contact Form Submission
+        </h2>
+        
+        <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
+          <p><strong>Name:</strong> ${escapeHTML(data.firstName)} ${escapeHTML(data.lastName)}</p>
+          <p><strong>Email:</strong> <a href="mailto:${escapeHTML(data.email)}">${escapeHTML(data.email)}</a></p>
+          <p><strong>Subject:</strong> ${escapeHTML(data.subject)}</p>
+          <p><strong>Submitted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+          <p><strong>IP Address:</strong> ${escapeHTML(data.ip)}</p>
+        </div>
+        
+        <div style="background-color: #ffffff; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <h3 style="color: #374151; margin-top: 0;">Message</h3>
+          <div style="white-space: pre-wrap; line-height: 1.6;">${escapeHTML(data.message)}</div>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background-color: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
+          <p style="margin: 0; color: #92400e; font-size: 14px;">
+            <strong>Note:</strong> This message was sent from your portfolio contact form at billymwangi.com
+          </p>
+        </div>
+      </div>
+    `,
+    text: `
+New Contact Form Submission
+
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Subject: ${data.subject}
+Submitted: ${new Date(data.timestamp).toLocaleString()}
+IP Address: ${data.ip}
+
+Message:
+${data.message}
+
+---
+This message was sent from your portfolio contact form at billymwangi.com
+    `
+  }
+
+  return await transporter.sendMail(mailOptions)
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const ip = request.headers.get('x-forwarded-for') ||
+               request.headers.get('x-real-ip') ||
+               'unknown'
+
+    // Basic per-IP rate limiting to protect the contact form from abuse
+    const now = Date.now()
+
+    // Cleanup expired entries on each request to avoid unbounded memory growth
+    contactRateLimitStore.forEach((entry, key) => {
+      if (now >= entry.resetTime) {
+        contactRateLimitStore.delete(key)
+      }
+    })
+
+    const existing = contactRateLimitStore.get(ip)
+
+    if (existing && now < existing.resetTime) {
+      if (existing.count >= CONTACT_RATE_LIMIT_MAX) {
+        return NextResponse.json(
+          { error: 'Too many submissions from this IP. Please try again later.' },
+          { status: 429 }
+        )
+      }
+      existing.count += 1
+    } else {
+      contactRateLimitStore.set(ip, {
+        count: 1,
+        resetTime: now + CONTACT_RATE_LIMIT_WINDOW_MS
+      })
+    }
+    
+    const body = await request.json()
+    
+    // Validate input
+    const validationResult = contactSchema.safeParse(body)
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: 'Invalid input data', details: validationResult.error.issues },
+        { status: 400 }
+      )
+    }
+    
+    const { firstName, lastName, email, subject, message } = validationResult.data
+    
+    // Sanitize inputs
+    const sanitizedData = {
+      firstName: sanitizeInput(firstName),
+      lastName: sanitizeInput(lastName),
+      email: sanitizeInput(email),
+      subject: sanitizeInput(subject),
+      message: sanitizeInput(message),
+      ip,
+      timestamp: new Date().toISOString()
+    }
+    
+    // Send email notification (optional - will work without email setup)
+    try {
+      if (process.env.EMAIL_USER && (process.env.EMAIL_APP_PASSWORD || process.env.EMAIL_PASSWORD)) {
+        await sendEmail(sanitizedData)
+        console.log('Email sent successfully for contact form submission')
+      } else {
+        console.log('Email not configured - contact form submission logged')
+      }
+    } catch (emailError) {
+      console.error('Email failed but form submission logged:', emailError)
+      // Don't fail the request if email fails
+    }
+    
+    // Log only non-sensitive metadata about the submission (no PII)
+    console.log('Contact form submission received', {
+      timestamp: sanitizedData.timestamp,
+      subjectLength: sanitizedData.subject.length,
+      messageLength: sanitizedData.message.length,
+    })
+    
+    return NextResponse.json(
+      { 
+        success: true, 
+        message: 'Thank you for your message! I will get back to you soon.' 
+      },
+      { 
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      }
+    )
+    
+  } catch (error) {
+    console.error('Contact form error:', error)
+    return NextResponse.json(
+      { error: 'Something went wrong. Please try again later.' },
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      }
+    )
+  }
+}
+
+// Block other HTTP methods
+export async function GET() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 })
+}
+
+export async function PUT() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 })
+}
+
+export async function DELETE() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 })
+}
