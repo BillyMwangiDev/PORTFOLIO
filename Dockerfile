@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install all dependencies (including dev) for the build step
 COPY package.json package-lock.json* ./
-RUN npm ci && npm cache clean --force
+RUN npm ci --legacy-peer-deps && npm cache clean --force
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -22,6 +22,12 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN npm run build
+
+# Install only production dependencies for the runner stage
+FROM base AS prod-deps
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci --legacy-peer-deps --omit=dev && npm cache clean --force
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -39,9 +45,9 @@ COPY --from=builder /app/public ./public
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Copy full Next.js build output and runtime deps (non-standalone layout)
+# Copy build output and production-only dependencies
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=prod-deps --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 
 USER nextjs

@@ -1,38 +1,37 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Users, Eye, Clock } from 'lucide-react'
 
 const PortfolioAnalytics = () => {
+  // Initialize with default values - will be updated after mount
   const [analytics, setAnalytics] = useState({
-    visitors: 0,
-    pageViews: 0,
+    visitors: 1,
+    pageViews: 1,
     timeOnSite: 0
   })
+  const startTimeRef = useRef<number | null>(null)
 
   useEffect(() => {
-    // Local, browser-only analytics demo for this session
-    setAnalytics(prev => ({
-      ...prev,
-      visitors: 1,
-      pageViews: prev.pageViews + 1,
-    }))
+    // Store start time on mount
+    startTimeRef.current = Date.now()
 
-    // Track time on site
-    const startTime = Date.now()
+    // Track time on site using interval (this is allowed in effect callbacks)
     const timeTracker = setInterval(() => {
-      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
-      setAnalytics(prev => ({
-        ...prev,
-        timeOnSite: timeSpent
-      }))
+      if (startTimeRef.current) {
+        const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000)
+        setAnalytics(prev => ({
+          ...prev,
+          timeOnSite: timeSpent
+        }))
+      }
     }, 1000)
 
     return () => {
       clearInterval(timeTracker)
     }
-  }, []) // Empty dependency array ensures this runs only once
+  }, [])
 
   const stats = [
     {
