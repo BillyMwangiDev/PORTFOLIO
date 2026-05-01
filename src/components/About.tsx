@@ -40,6 +40,7 @@ export function About() {
                 src="/billy-mwangi.jpg"
                 alt="Billy Mwangi"
                 fill
+                sizes="(max-width: 768px) 192px, 256px"
                 className="object-cover object-top"
                 priority
               />
