@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata } from 'next'
 import { Almarai, DM_Sans, Instrument_Serif } from 'next/font/google'
 import { BackgroundOrbs } from '@/components/ui/BackgroundOrbs'
@@ -26,15 +27,89 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://billymwangi.com'),
   title: 'Billy Mwangi — AI Architect & Software Engineer',
   description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs. Building intelligent systems for African businesses.',
-  keywords: ['AI Engineer', 'Software Engineer', 'FastAPI', 'Next.js', 'Nairobi', 'Hekima Labs'],
-  authors: [{ name: 'Billy Mwangi', url: 'https://github.com/billymwangidev' }],
+  keywords: [
+    'AI Engineer Kenya',
+    'Machine Learning Nairobi',
+    'African AI',
+    'Hekima Labs',
+    'Software Engineer Nairobi',
+    'FastAPI',
+    'Next.js',
+    'Billy Mwangi',
+  ],
+  authors: [{ name: 'Billy Mwangi', url: 'https://billymwangi.com' }],
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Billy Mwangi — AI Architect & Software Engineer',
-    description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs.',
+    description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs. Building intelligent systems for African businesses.',
     type: 'website',
+    url: 'https://billymwangi.com',
+    siteName: 'Billy Mwangi',
+    locale: 'en_KE',
   },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@billymwangidev',
+    title: 'Billy Mwangi — AI Architect & Software Engineer',
+    description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs.',
+  },
+  other: {
+    'geo.region': 'KE-110',
+    'geo.placename': 'Nairobi, Kenya',
+  },
+}
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Billy Mwangi',
+  jobTitle: 'AI Architect & Software Engineer',
+  url: 'https://billymwangi.com',
+  email: 'billymwangi200@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nairobi',
+    addressCountry: 'KE',
+  },
+  sameAs: [
+    'https://github.com/billymwangidev',
+    'https://www.linkedin.com/in/billy-mwangi-5b6b5926a',
+    'https://x.com/billymwangidev',
+  ],
+  knowsAbout: [
+    'Artificial Intelligence',
+    'Machine Learning',
+    'Software Engineering',
+    'FastAPI',
+    'Next.js',
+    'Kenya Tech Ecosystem',
+    'African AI',
+  ],
+  founder: { '@type': 'Organization', name: 'Hekima Labs' },
+}
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Hekima Labs',
+  url: 'https://hekimalabs.tech',
+  description: 'AI solutions for African businesses',
+  founder: { '@type': 'Person', name: 'Billy Mwangi' },
+  location: {
+    '@type': 'Place',
+    address: { addressLocality: 'Nairobi', addressCountry: 'KE' },
+  },
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Billy Mwangi',
+  url: 'https://billymwangi.com',
+  author: { '@type': 'Person', name: 'Billy Mwangi' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -44,6 +119,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`dark ${almarai.variable} ${dmSans.variable} ${instrumentSerif.variable}`}
     >
       <body className="bg-void text-cream font-dm-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <BackgroundOrbs />
         {children}
       </body>
