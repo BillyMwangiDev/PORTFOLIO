@@ -26,7 +26,7 @@ Make `billymwangi.com` authoritative in both traditional search (Google) and gen
 
 - `metadataBase: new URL('https://billymwangi.com')`
 - `alternates: { canonical: '/' }`
-- Twitter Card tags: `card: 'summary_large_image'`, `creator: '@billymwangi'` *(verify Twitter/X handle before implementation)*
+- Twitter Card tags: `card: 'summary_large_image'`, `creator: '@billymwangidev'`
 - Full OpenGraph: `siteName`, `locale: 'en_KE'`, `type: 'website'`
 - Updated `keywords`: `['AI Engineer Kenya', 'Machine Learning Nairobi', 'African AI', 'Hekima Labs', 'Software Engineer Nairobi', 'FastAPI', 'Next.js']`
 
@@ -58,7 +58,8 @@ All schemas injected via `<script type="application/ld+json">` server-side. No c
   },
   "sameAs": [
     "https://github.com/billymwangidev",
-    "https://linkedin.com/in/billymwangi"  // verify exact LinkedIn URL slug
+    "https://www.linkedin.com/in/billy-mwangi-5b6b5926a",
+    "https://x.com/billymwangidev"
   ],
   "knowsAbout": [
     "Artificial Intelligence",
@@ -79,7 +80,7 @@ All schemas injected via `<script type="application/ld+json">` server-side. No c
 {
   "@type": "Organization",
   "name": "Hekima Labs",
-  "url": "https://hekimalabs.com",  // verify actual Hekima Labs URL
+  "url": "https://hekimalabs.tech",
   "description": "AI solutions for African businesses",
   "founder": { "@type": "Person", "name": "Billy Mwangi" },
   "location": {
