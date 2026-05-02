@@ -29,7 +29,7 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Billy Mwangi — AI Architect & Software Engineer',
+  title: 'Billy Mwangi | AI Architect & Software Engineer',
   description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs. Building intelligent systems for African businesses.',
   keywords: [
     'AI Engineer Kenya',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Billy Mwangi', url: SITE_URL }],
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Billy Mwangi — AI Architect & Software Engineer',
+    title: 'Billy Mwangi | AI Architect & Software Engineer',
     description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs. Building intelligent systems for African businesses.',
     type: 'website',
     url: SITE_URL,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@billymwangidev',
     creator: '@billymwangidev',
-    title: 'Billy Mwangi — AI Architect & Software Engineer',
+    title: 'Billy Mwangi | AI Architect & Software Engineer',
     description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs.',
   },
   other: {

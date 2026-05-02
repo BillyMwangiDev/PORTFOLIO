@@ -21,7 +21,7 @@ export const projects: Project[] = [
   {
     id: 'duka-pos',
     title: 'DukaPOS',
-    description: 'Offline-first Windows desktop POS for Kenyan retail — Electron + React + FastAPI bundled as a self-contained installer. M-Pesa STK Push, barcode scanning, loyalty points, KRA eTIMS export, and ESC/POS thermal printing. 21 backend + 39 frontend tests on CI.',
+    description: 'Offline-first Windows desktop POS for Kenyan retail: Electron + React + FastAPI bundled as a self-contained installer. M-Pesa STK Push, barcode scanning, loyalty points, KRA eTIMS export, and ESC/POS thermal printing. 21 backend + 39 frontend tests on CI.',
     tags: ['Electron', 'FastAPI', 'React', 'SQLite'],
     role: 'Lead Engineer',
     href: 'https://github.com/BillyMwangiDev/DukaPOS',
@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     id: 'nexus-movie',
     title: 'Nexus Movie',
-    description: 'Full-stack movie platform with a weighted collaborative-content hybrid recommendation engine. Built as an ALX capstone — FastAPI backend, React Native frontend, and a PostgreSQL graph powering personalised suggestions.',
+    description: 'Full-stack movie platform with a weighted collaborative-content hybrid recommendation engine. Built as an ALX capstone: FastAPI backend, React Native frontend, and a PostgreSQL graph powering personalised suggestions.',
     tags: ['Python', 'FastAPI', 'React Native', 'PostgreSQL'],
     role: 'Solo Engineer',
     href: 'https://github.com/BillyMwangiDev/nexus-movie-frontend',
@@ -61,9 +61,9 @@ export const projects: Project[] = [
   {
     id: 'africas-talking',
     title: 'PriceChekRider',
-    description: 'USSD + SMS retail price comparison built for the Africa\'s Talking Hackathon. Shoppers dial in, set their Nairobi location, then receive an SMS comparing prices across Naivas, Quickmart, Tuskys, and Carrefour — and can place an order by replying ORDER.',
+    description: 'USSD + SMS retail price comparison built for the Africa\'s Talking Hackathon. Shoppers dial in, set their Nairobi location, then receive an SMS comparing prices across Naivas, Quickmart, Tuskys, and Carrefour, and can place an order by replying ORDER.',
     tags: ['Python', 'FastAPI', 'USSD', 'SMS API'],
-    role: 'Solo Engineer — Hackathon',
+    role: 'Solo Engineer, Hackathon',
     href: 'https://github.com/BillyMwangiDev/Africas-talking_hackathon',
   },
 ]

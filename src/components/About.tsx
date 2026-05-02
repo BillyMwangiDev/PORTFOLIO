@@ -62,7 +62,7 @@ export function About() {
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.5 }}
             >
-              AI Architect & Software Engineer — Nairobi
+              AI Architect & Software Engineer, Nairobi
             </motion.p>
           </div>
 
@@ -74,7 +74,7 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              I build AI-powered systems and full-stack products for African businesses. With three years of Python and a year specialising in backend architecture, I focus on systems that are reliable, fast, and built for real constraints — offline-capable, low-bandwidth, and cost-conscious.
+              I build AI-powered systems and full-stack products for African businesses. With three years of Python and a year specialising in backend architecture, I focus on systems that are reliable, fast, and built for real constraints: offline-capable, low-bandwidth, and cost-conscious.
             </motion.p>
             <motion.p
               className="text-stone leading-relaxed text-base"
@@ -83,7 +83,7 @@ export function About() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              I founded <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a> to bring intelligent automation to SMEs across the continent. My stack spans FastAPI, Django, React, React Native, and Next.js — whatever the problem needs.
+              I founded <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a> to bring intelligent automation to SMEs across the continent. My stack spans FastAPI, Django, React, React Native, and Next.js, whatever the problem needs.
             </motion.p>
 
             <div className="grid grid-cols-2 gap-4 mt-2">

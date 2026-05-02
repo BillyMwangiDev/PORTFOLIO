@@ -5,11 +5,11 @@ import type { Metadata } from 'next'
 import { SITE_URL } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Blog — Billy Mwangi',
+  title: 'Blog | Billy Mwangi',
   description: 'Thoughts on AI, software engineering, and building technology for Africa.',
   alternates: { canonical: '/blog' },
   openGraph: {
-    title: 'Blog — Billy Mwangi',
+    title: 'Blog | Billy Mwangi',
     description: 'Thoughts on AI, software engineering, and building technology for Africa.',
     url: `${SITE_URL}/blog`,
     type: 'website',

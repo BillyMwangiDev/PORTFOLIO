@@ -52,7 +52,7 @@ export function Hero() {
                 <p className="text-stone text-sm leading-relaxed font-dm-sans">
                   Founder of{' '}
                   <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a>
-                  . Crafting AI systems, automation workflows, and full-stack products for African businesses — from Nairobi, Kenya.
+                  . Crafting AI systems, automation workflows, and full-stack products for African businesses, from Nairobi, Kenya.
                 </p>
               </div>
               <div className="flex items-center gap-4">

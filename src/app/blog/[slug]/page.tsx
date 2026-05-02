@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (!post) return {}
 
   return {
-    title: `${post.title} — Billy Mwangi`,
+    title: `${post.title} | Billy Mwangi`,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
     keywords: post.tags,

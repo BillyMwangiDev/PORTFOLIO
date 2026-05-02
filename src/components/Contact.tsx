@@ -56,7 +56,7 @@ export function Contact() {
               viewport={{ once: true }}
               transition={{ delay: 0.15, duration: 0.5 }}
             >
-              Open to contract work, collaborations, and co-founder conversations. Based in Nairobi — available remotely.
+              Open to contract work, collaborations, and co-founder conversations. Based in Nairobi, available remotely.
             </motion.p>
             <motion.a
               href={`mailto:${socialLinks.email}`}
