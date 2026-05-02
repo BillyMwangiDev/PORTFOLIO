@@ -2,14 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { Navigation } from './Navigation'
 import { WordsPullUp } from './ui/WordsPullUp'
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col bg-void overflow-hidden">
-      <Navigation />
-
       <div
         className="
           absolute inset-3 md:inset-5
