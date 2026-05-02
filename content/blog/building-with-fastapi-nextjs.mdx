@@ -1,0 +1,95 @@
+---
+title: "Building a Production FastAPI + Next.js App: Lessons from Hekima Labs"
+description: "A practical guide to the architecture patterns, deployment choices, and hard-won lessons from shipping a full-stack AI application with FastAPI and Next.js."
+date: "2026-04-15"
+category: "technical"
+tags: ["FastAPI", "Next.js", "Python", "Software Engineering", "API Design"]
+readTime: 8
+---
+
+The combination of FastAPI for the backend and Next.js for the frontend has become our default architecture at Hekima Labs for AI-powered applications. This post covers the patterns that work, the ones that do not, and the decisions we made when moving from prototype to production.
+
+## Why FastAPI
+
+FastAPI is fast to write, fast to run, and produces OpenAPI documentation automatically. For AI applications, the async-native design matters: model inference is I/O-bound, and blocking the event loop on a model call while other requests queue up is a production problem that hits you at the worst moment.
+
+The type annotation system also pairs well with Pydantic for request and response validation, which becomes critical when your AI system returns structured output that downstream components depend on.
+
+## Project Structure
+
+We organise our FastAPI projects around features, not technical layers:
+
+```
+app/
+├── api/
+│   └── v1/
+│       ├── endpoints/
+│       │   ├── inference.py   # model prediction routes
+│       │   ├── documents.py   # file handling
+│       │   └── health.py      # health checks
+│       └── router.py
+├── core/
+│   ├── config.py              # settings via pydantic-settings
+│   └── deps.py                # dependency injection
+├── models/
+│   └── inference.py           # AI model loading and inference
+└── main.py
+```
+
+The key insight: `models/` contains the ML model code, not the database models. We use `schemas/` for Pydantic models and `db/` for ORM models if a database is involved.
+
+## The Next.js ↔ FastAPI Boundary
+
+The cleanest approach we have found is to proxy API calls through Next.js rewrites in development and use environment variables to point to the FastAPI service in production.
+
+In `next.config.ts`:
+
+```typescript
+async rewrites() {
+  return [
+    {
+      source: '/api/v1/:path*',
+      destination: `${process.env.BACKEND_URL}/api/v1/:path*`,
+    },
+  ]
+}
+```
+
+This means your frontend code always calls `/api/v1/...` and the routing is handled at the infrastructure level. No CORS configuration needed in development. Clean separation in production.
+
+## Streaming AI Responses
+
+For AI features where inference takes more than a second, streaming is not a UX enhancement — it is a requirement. Users will close tabs or assume the system is broken if they wait five seconds for a blank screen before text appears.
+
+FastAPI supports streaming via `StreamingResponse`. On the Next.js side, the AI SDK's `useChat` or a direct `EventSource` handles the stream.
+
+The pattern we use in FastAPI:
+
+```python
+from fastapi.responses import StreamingResponse
+
+@router.post("/inference/stream")
+async def stream_inference(request: InferenceRequest):
+    async def generate():
+        async for chunk in model.stream(request.prompt):
+            yield f"data: {chunk}\n\n"
+        yield "data: [DONE]\n\n"
+
+    return StreamingResponse(generate(), media_type="text/event-stream")
+```
+
+## Deployment
+
+We deploy FastAPI on a containerised environment and Next.js on Vercel. The environment variable `BACKEND_URL` points Next.js at the FastAPI service.
+
+The critical configuration: FastAPI needs `ALLOWED_ORIGINS` set to include your Vercel deployment URL and your preview URL pattern. Vercel preview URLs follow a predictable pattern (`your-project-*.vercel.app`) which you can allow with a regex origin validator in FastAPI.
+
+## What We Would Do Differently
+
+**Rate limiting from day one.** We added it after launch, which meant a rewrite of the request handling middleware. The right time to add rate limiting is before your first external user, not after.
+
+**Structured logging.** `print()` statements in production are not logs. We now use `structlog` for JSON-formatted logs that can be queried. The difference when debugging a production incident is significant.
+
+**Model versioning.** When you update a model, old requests behave differently. Version your model endpoints (`/v1/inference`, `/v2/inference`) from the start so you can run old and new models in parallel during transitions.
+
+The FastAPI + Next.js stack has served us well. The boundary between them is clean, both have excellent type systems, and the ecosystem support is strong. The lessons above are the ones we learned the expensive way so you do not have to.
