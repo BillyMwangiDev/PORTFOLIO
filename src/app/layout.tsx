@@ -1,7 +1,8 @@
 // src/app/layout.tsx
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Almarai, DM_Sans, Instrument_Serif } from 'next/font/google'
 import { BackgroundOrbs } from '@/components/ui/BackgroundOrbs'
+import { SITE_URL } from '@/lib/config'
 import './globals.css'
 
 const almarai = Almarai({
@@ -27,7 +28,7 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://billymwangi.com'),
+  metadataBase: new URL(SITE_URL),
   title: 'Billy Mwangi — AI Architect & Software Engineer',
   description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs. Building intelligent systems for African businesses.',
   keywords: [
@@ -40,18 +41,19 @@ export const metadata: Metadata = {
     'Next.js',
     'Billy Mwangi',
   ],
-  authors: [{ name: 'Billy Mwangi', url: 'https://billymwangi.com' }],
+  authors: [{ name: 'Billy Mwangi', url: SITE_URL }],
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Billy Mwangi — AI Architect & Software Engineer',
     description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs. Building intelligent systems for African businesses.',
     type: 'website',
-    url: 'https://billymwangi.com',
+    url: SITE_URL,
     siteName: 'Billy Mwangi',
     locale: 'en_KE',
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@billymwangidev',
     creator: '@billymwangidev',
     title: 'Billy Mwangi — AI Architect & Software Engineer',
     description: 'Nairobi-based AI Architect and Software Engineer. Founder of Hekima Labs.',
@@ -62,12 +64,17 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  themeColor: '#000000',
+  colorScheme: 'dark',
+}
+
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Billy Mwangi',
   jobTitle: 'AI Architect & Software Engineer',
-  url: 'https://billymwangi.com',
+  url: SITE_URL,
   email: 'billymwangi200@gmail.com',
   address: {
     '@type': 'PostalAddress',
@@ -108,7 +115,7 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Billy Mwangi',
-  url: 'https://billymwangi.com',
+  url: SITE_URL,
   author: { '@type': 'Person', name: 'Billy Mwangi' },
 }
 

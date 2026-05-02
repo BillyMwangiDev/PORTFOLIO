@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { getPostBySlug } from '@/lib/blog'
+import { SITE_URL } from '@/lib/config'
 
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
@@ -66,7 +67,7 @@ export default async function OGImage({
             fontFamily: 'sans-serif',
           }}
         >
-          Billy Mwangi · billymwangi.com
+          Billy Mwangi · {SITE_URL.replace('https://', '')}
         </div>
       </div>
     ),

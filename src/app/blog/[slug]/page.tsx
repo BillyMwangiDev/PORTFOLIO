@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { SITE_URL } from '@/lib/config'
 
 const SCHEMA_TYPES: Record<PostCategory, string> = {
   'technical': 'TechArticle',
@@ -40,13 +41,14 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       type: 'article',
-      url: `https://billymwangi.com/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       publishedTime: post.date,
       authors: ['Billy Mwangi'],
       tags: post.tags,
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@billymwangidev',
       creator: '@billymwangidev',
       title: post.title,
       description: post.description,
@@ -70,13 +72,13 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedAt ?? post.date,
     author: {
       '@type': 'Person',
       name: 'Billy Mwangi',
-      url: 'https://billymwangi.com',
+      url: SITE_URL,
     },
-    url: `https://billymwangi.com/blog/${post.slug}`,
+    url: `${SITE_URL}/blog/${post.slug}`,
     keywords: post.tags.join(', '),
     about: post.tags.map(tag => ({ '@type': 'Thing', name: tag })),
   }
