@@ -43,6 +43,7 @@ export function About() {
                 sizes="(max-width: 768px) 192px, 256px"
                 className="object-cover object-top"
                 priority
+                unoptimized
               />
             </motion.div>
 
