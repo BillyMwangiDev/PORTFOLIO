@@ -8,7 +8,7 @@ export function Footer() {
             alt="Hekima Labs"
             width={32}
             height={32}
-            className="opacity-80 brightness-0 invert"
+            className="opacity-90 invert mix-blend-screen"
           />
           <span className="text-dm-label text-stone text-xs">Billy Mwangi / Hekima Labs</span>
         </div>
