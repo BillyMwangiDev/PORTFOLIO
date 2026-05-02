@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Almarai, DM_Sans, Instrument_Serif } from 'next/font/google'
+import { BackgroundOrbs } from '@/components/ui/BackgroundOrbs'
 import './globals.css'
 
 const almarai = Almarai({
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`dark ${almarai.variable} ${dmSans.variable} ${instrumentSerif.variable}`}
     >
       <body className="bg-void text-cream font-dm-sans antialiased">
+        <BackgroundOrbs />
         {children}
       </body>
     </html>

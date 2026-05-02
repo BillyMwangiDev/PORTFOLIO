@@ -13,7 +13,7 @@ export function WordsPullUp({ text, className = '', delayOffset = 0 }: WordsPull
   return (
     <span className={`inline-flex flex-wrap gap-x-[0.2em] ${className}`}>
       {words.map((word, i) => (
-        <span key={i} className="overflow-hidden inline-block">
+        <span key={i} className="overflow-hidden inline-block pb-[0.2em] -mb-[0.2em]">
           <motion.span
             className="inline-block"
             initial={{ y: '110%', opacity: 0 }}

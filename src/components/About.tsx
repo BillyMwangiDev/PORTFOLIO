@@ -15,7 +15,7 @@ const fadeUp = {
 
 export function About() {
   return (
-    <section id="about" className="bg-coal py-24 md:py-32 px-6 md:px-14">
+    <section id="about" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-5xl mx-auto">
         <motion.p
           className="text-dm-label text-ember text-xs mb-10"
@@ -83,7 +83,7 @@ export function About() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              I founded Hekima Labs to bring intelligent automation to SMEs across the continent. My stack spans FastAPI, Django, React, React Native, and Next.js — whatever the problem needs.
+              I founded <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a> to bring intelligent automation to SMEs across the continent. My stack spans FastAPI, Django, React, React Native, and Next.js — whatever the problem needs.
             </motion.p>
 
             <div className="grid grid-cols-2 gap-4 mt-2">

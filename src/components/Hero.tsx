@@ -25,7 +25,7 @@ export function Hero() {
           `,
         }}
       >
-        <div className="relative z-10 h-full flex flex-col justify-end px-8 pb-10 md:px-14 md:pb-14 pt-24">
+        <div className="relative z-10 h-full flex flex-col justify-end px-8 pb-16 md:px-14 md:pb-20 pt-24">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
 
             <div className="flex-1">
@@ -37,7 +37,7 @@ export function Hero() {
               >
                 AI Architect & Software Engineer
               </motion.p>
-              <h1 className="font-almarai font-extrabold text-cream-hi leading-[0.88] text-[13vw] md:text-[8vw]">
+              <h1 className="font-almarai font-extrabold text-cream-hi leading-[1] text-[13vw] md:text-[8vw]">
                 <WordsPullUp text="Billy" delayOffset={0.1} />
                 <br />
                 <WordsPullUp text="Mwangi" delayOffset={0.22} />
@@ -50,7 +50,9 @@ export function Hero() {
                   Building Africa&apos;s intelligent future
                 </p>
                 <p className="text-stone text-sm leading-relaxed font-dm-sans">
-                  Founder of Hekima Labs. Crafting AI systems, automation workflows, and full-stack products for African businesses — from Nairobi, Kenya.
+                  Founder of{' '}
+                  <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a>
+                  . Crafting AI systems, automation workflows, and full-stack products for African businesses — from Nairobi, Kenya.
                 </p>
               </div>
               <div className="flex items-center gap-4">
