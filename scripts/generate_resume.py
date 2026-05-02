@@ -22,15 +22,15 @@ doc = SimpleDocTemplate(
 )
 
 name_style = ParagraphStyle('Name', fontSize=20, fontName='Helvetica-Bold',
-    textColor=NAVY, spaceAfter=2, alignment=TA_CENTER)
+    textColor=NAVY, leading=26, spaceAfter=4, alignment=TA_CENTER)
 contact_style = ParagraphStyle('Contact', fontSize=8.5, fontName='Helvetica',
-    textColor=black, spaceAfter=1, alignment=TA_CENTER, leading=13)
+    textColor=black, spaceAfter=3, alignment=TA_CENTER, leading=13)
 section_style = ParagraphStyle('Section', fontSize=10, fontName='Helvetica-Bold',
-    textColor=NAVY, spaceBefore=6, spaceAfter=2, leading=14)
+    textColor=NAVY, spaceBefore=8, spaceAfter=3, leading=14)
 body_style = ParagraphStyle('Body', fontSize=8.5, fontName='Helvetica',
-    textColor=black, spaceAfter=1, leading=12, alignment=TA_JUSTIFY)
+    textColor=black, spaceAfter=2, leading=12, alignment=TA_JUSTIFY)
 bullet_style = ParagraphStyle('Bullet', fontSize=8.5, fontName='Helvetica',
-    textColor=black, spaceAfter=1, leading=12, leftIndent=10)
+    textColor=black, spaceAfter=2, leading=12, leftIndent=10)
 proj_header_style = ParagraphStyle('ProjHeader', fontSize=9, fontName='Helvetica-Bold',
     textColor=NAVY, leading=13, spaceAfter=1)
 proj_body_style = ParagraphStyle('ProjBody', fontSize=8.2, fontName='Helvetica',
