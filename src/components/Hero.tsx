@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { WordsPullUp } from './ui/WordsPullUp'
 
@@ -26,14 +26,14 @@ export function Hero() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
 
             <div className="flex-1">
-              <motion.p
+              <m.p
                 className="text-dm-label text-stone text-xs mb-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
+                transition={{ delay: 0.1, duration: 0.4 }}
               >
                 AI Architect & Software Engineer
-              </motion.p>
+              </m.p>
               <h1 className="font-almarai font-extrabold text-cream-hi leading-[1] text-[13vw] md:text-[8vw]">
                 <WordsPullUp text="Billy" delayOffset={0.1} />
                 <br />
@@ -53,28 +53,28 @@ export function Hero() {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <motion.a
+                <m.a
                   href="#projects"
                   className="inline-flex items-center gap-3 bg-ember hover:bg-dusk text-void font-dm-sans font-medium text-sm px-5 py-3 rounded-full transition-colors duration-200"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   View Work
                   <span className="w-6 h-6 rounded-full bg-void/20 flex items-center justify-center">
                     <ArrowUpRight size={13} />
                   </span>
-                </motion.a>
-                <motion.a
+                </m.a>
+                <m.a
                   href="/resume/Billy_Mwangi.pdf"
                   download
                   className="text-dm-label text-stone text-xs hover:text-cream-hi transition-colors duration-200"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.85, duration: 0.5 }}
+                  transition={{ delay: 0.42, duration: 0.4 }}
                 >
                   Resume
-                </motion.a>
+                </m.a>
               </div>
             </div>
 

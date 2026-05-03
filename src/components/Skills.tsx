@@ -1,13 +1,13 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { skills } from '@/lib/data'
 
 export function Skills() {
   return (
     <section id="skills" className="bg-void py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-5xl mx-auto">
-        <motion.p
+        <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -15,8 +15,8 @@ export function Skills() {
           transition={{ duration: 0.5 }}
         >
           Skills
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-14"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,11 +24,11 @@ export function Skills() {
           transition={{ duration: 0.6 }}
         >
           What I work with
-        </motion.h2>
+        </m.h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {skills.map((category, i) => (
-            <motion.div
+            <m.div
               key={category.label}
               className="bg-coal rounded-2xl p-6 border border-smoke/50 hover:border-smoke transition-colors duration-200"
               initial={{ opacity: 0, y: 24 }}
@@ -47,7 +47,7 @@ export function Skills() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

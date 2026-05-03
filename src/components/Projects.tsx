@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/data'
 
@@ -8,7 +8,7 @@ export function Projects() {
   return (
     <section id="projects" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-5xl mx-auto">
-        <motion.p
+        <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -16,8 +16,8 @@ export function Projects() {
           transition={{ duration: 0.5 }}
         >
           Projects
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-14"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ export function Projects() {
         >
           Things I&apos;ve{' '}
           <span className="font-instrument italic text-dusk">built</span>
-        </motion.h2>
+        </m.h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, i) => {
@@ -63,7 +63,7 @@ export function Projects() {
             const className = "group bg-graphite rounded-2xl p-6 border border-smoke/40 hover:border-ember/40 transition-colors duration-300 flex flex-col gap-4"
 
             return (
-              <motion.article
+              <m.article
                 key={project.id}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -77,12 +77,12 @@ export function Projects() {
                 ) : (
                   <div className={className}>{inner}</div>
                 )}
-              </motion.article>
+              </m.article>
             )
           })}
         </div>
 
-        <motion.div
+        <m.div
           className="mt-12 flex justify-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -98,7 +98,7 @@ export function Projects() {
             View all 40+ repos on GitHub
             <ArrowUpRight size={14} />
           </a>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

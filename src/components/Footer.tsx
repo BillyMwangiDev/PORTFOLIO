@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Github, Linkedin, Mail } from 'lucide-react'
@@ -30,7 +30,7 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 pb-12 border-b border-smoke/30">
 
           {/* Brand */}
-          <motion.div
+          <m.div
             className="flex flex-col gap-4"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +44,6 @@ export function Footer() {
                 width={36}
                 height={36}
                 className="opacity-90 invert mix-blend-screen"
-                unoptimized
               />
               <div className="flex flex-col">
                 <span className="text-dm-label text-cream-hi text-xs">Billy Mwangi</span>
@@ -54,10 +53,10 @@ export function Footer() {
             <p className="font-instrument italic text-stone text-sm leading-relaxed">
               Building Africa&apos;s intelligent future — from Nairobi.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Navigation */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
@@ -76,10 +75,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
 
           {/* Social */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
@@ -103,7 +102,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
 
         </div>
 

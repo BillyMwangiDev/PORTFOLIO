@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { socialLinks } from '@/lib/data'
 
@@ -19,7 +19,7 @@ export function Contact() {
   return (
     <section id="contact" className="bg-void py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-5xl mx-auto">
-        <motion.p
+        <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -27,11 +27,11 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           Contact
-        </motion.p>
+        </m.p>
 
         <div className="grid md:grid-cols-2 gap-14 items-start">
           <div>
-            <motion.h2
+            <m.h2
               className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -39,8 +39,8 @@ export function Contact() {
               transition={{ duration: 0.6 }}
             >
               Let&apos;s build something
-            </motion.h2>
-            <motion.p
+            </m.h2>
+            <m.p
               className="font-instrument italic text-dusk text-lg mb-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -48,8 +48,8 @@ export function Contact() {
               transition={{ delay: 0.1, duration: 0.5 }}
             >
               for Africa, from Africa.
-            </motion.p>
-            <motion.p
+            </m.p>
+            <m.p
               className="text-stone text-sm leading-relaxed mb-8"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -57,8 +57,8 @@ export function Contact() {
               transition={{ delay: 0.15, duration: 0.5 }}
             >
               Open to contract work, collaborations, and co-founder conversations. Based in Nairobi, available remotely.
-            </motion.p>
-            <motion.a
+            </m.p>
+            <m.a
               href={`mailto:${socialLinks.email}`}
               className="inline-flex items-center gap-3 bg-ember hover:bg-dusk text-void font-dm-sans font-medium text-sm px-6 py-3 rounded-full transition-colors duration-200"
               initial={{ opacity: 0 }}
@@ -67,10 +67,10 @@ export function Contact() {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               Send me an email
-            </motion.a>
+            </m.a>
           </div>
 
-          <motion.div
+          <m.div
             className="flex flex-col gap-3"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -105,7 +105,7 @@ export function Contact() {
                 </span>
               </a>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

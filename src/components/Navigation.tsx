@@ -1,7 +1,7 @@
 // src/components/Navigation.tsx
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -20,7 +20,7 @@ export function Navigation() {
   const [open, setOpen] = useState(false)
 
   return (
-    <motion.nav
+    <m.nav
       className="fixed top-0 left-1/2 -translate-x-1/2 z-50"
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -60,7 +60,7 @@ export function Navigation() {
       {/* Mobile dropdown */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-1 w-44 bg-coal/95 backdrop-blur-md border border-smoke/40 rounded-2xl px-2 py-2 flex flex-col"
             initial={{ opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -84,9 +84,9 @@ export function Navigation() {
             >
               Blog
             </Link>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </m.nav>
   )
 }

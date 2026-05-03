@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const orbs = [
   {
     color: '#D4824A',
     opacity: 0.18,
     size: 700,
-    blur: 160,
+    blur: 75,
     duration: 22,
     waypoints: [
       { x: -60, y: -40 },
@@ -22,7 +22,7 @@ const orbs = [
     color: '#3D1C0A',
     opacity: 0.45,
     size: 650,
-    blur: 140,
+    blur: 65,
     duration: 28,
     waypoints: [
       { x: 60,  y: 40  },
@@ -36,7 +36,7 @@ const orbs = [
     color: '#E8A470',
     opacity: 0.10,
     size: 520,
-    blur: 180,
+    blur: 85,
     duration: 19,
     waypoints: [
       { x: -100, y: 60  },
@@ -50,7 +50,7 @@ const orbs = [
     color: '#3D1C0A',
     opacity: 0.38,
     size: 820,
-    blur: 200,
+    blur: 95,
     duration: 25,
     waypoints: [
       { x: 80,  y: -60 },
@@ -81,7 +81,7 @@ export function BackgroundOrbs() {
       style={{ zIndex: 0 }}
     >
       {orbs.map((orb, i) => (
-        <motion.div
+        <m.div
           key={i}
           className="absolute rounded-full"
           style={{
@@ -90,6 +90,7 @@ export function BackgroundOrbs() {
             background: orb.color,
             opacity: orb.opacity,
             filter: `blur(${orb.blur * scale}px)`,
+            willChange: 'transform',
             ...orb.initial,
           }}
           animate={{
@@ -105,5 +106,6 @@ export function BackgroundOrbs() {
         />
       ))}
     </div>
+
   )
 }

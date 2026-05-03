@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { stats } from '@/lib/data'
 
 const fadeUp = {
@@ -17,7 +17,7 @@ export function About() {
   return (
     <section id="about" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-5xl mx-auto">
-        <motion.p
+        <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -25,11 +25,11 @@ export function About() {
           transition={{ duration: 0.5 }}
         >
           About
-        </motion.p>
+        </m.p>
 
         <div className="grid md:grid-cols-2 gap-14 items-start">
           <div>
-            <motion.div
+            <m.div
               className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden mb-8 border border-smoke"
               initial={{ opacity: 0, scale: 0.92 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -43,11 +43,10 @@ export function About() {
                 sizes="(max-width: 768px) 192px, 256px"
                 className="object-cover object-top"
                 priority
-                unoptimized
               />
-            </motion.div>
+            </m.div>
 
-            <motion.h2
+            <m.h2
               className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -55,8 +54,8 @@ export function About() {
               transition={{ duration: 0.6 }}
             >
               Billy Mwangi
-            </motion.h2>
-            <motion.p
+            </m.h2>
+            <m.p
               className="font-instrument italic text-dusk text-base"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -64,11 +63,11 @@ export function About() {
               transition={{ delay: 0.15, duration: 0.5 }}
             >
               AI Architect & Software Engineer, Nairobi
-            </motion.p>
+            </m.p>
           </div>
 
           <div className="flex flex-col gap-8">
-            <motion.p
+            <m.p
               className="text-stone leading-relaxed text-base"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -76,8 +75,8 @@ export function About() {
               transition={{ duration: 0.6 }}
             >
               I build AI-powered systems and full-stack products for African businesses. With three years of Python and a year specialising in backend architecture, I focus on systems that are reliable, fast, and built for real constraints: offline-capable, low-bandwidth, and cost-conscious.
-            </motion.p>
-            <motion.p
+            </m.p>
+            <m.p
               className="text-stone leading-relaxed text-base"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -85,11 +84,11 @@ export function About() {
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               I founded <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a> to bring intelligent automation to SMEs across the continent. My stack spans FastAPI, Django, React, React Native, and Next.js, whatever the problem needs.
-            </motion.p>
+            </m.p>
 
             <div className="grid grid-cols-2 gap-4 mt-2">
               {stats.map((stat, i) => (
-                <motion.div
+                <m.div
                   key={stat.label}
                   custom={i}
                   variants={fadeUp}
@@ -100,7 +99,7 @@ export function About() {
                 >
                   <p className="font-almarai font-bold text-ember text-2xl">{stat.value}</p>
                   <p className="text-dm-label text-stone text-[10px] mt-1">{stat.label}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

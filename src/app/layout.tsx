@@ -2,6 +2,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Almarai, DM_Sans, Instrument_Serif } from 'next/font/google'
 import { BackgroundOrbs } from '@/components/ui/BackgroundOrbs'
+import { MotionProvider } from '@/components/ui/MotionProvider'
 import { Navigation } from '@/components/Navigation'
 import { SITE_URL } from '@/lib/config'
 import './globals.css'
@@ -142,9 +143,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <BackgroundOrbs />
-        <Navigation />
-        {children}
+        <MotionProvider>
+          <BackgroundOrbs />
+          <Navigation />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   )
