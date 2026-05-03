@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { socialLinks } from '@/lib/data'
@@ -37,7 +38,7 @@ export function Footer() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src="/bm-logo.png"
                 alt="Billy Mwangi"
                 width={36}
