@@ -9,7 +9,7 @@ import './globals.css'
 
 const almarai = Almarai({
   subsets: ['latin'],
-  weight: ['300', '700', '800'],
+  weight: ['700', '800'],
   variable: '--font-almarai',
   display: 'swap',
 })

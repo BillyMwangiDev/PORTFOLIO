@@ -12,7 +12,7 @@ export function Projects() {
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
           Projects
@@ -21,7 +21,7 @@ export function Projects() {
           className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-14"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
         >
           Things I&apos;ve{' '}
@@ -67,7 +67,7 @@ export function Projects() {
                 key={project.id}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: (i % 9) * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               >
                 {project.href ? (
@@ -86,7 +86,7 @@ export function Projects() {
           className="mt-12 flex justify-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
           <a

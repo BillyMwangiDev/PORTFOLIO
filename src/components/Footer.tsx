@@ -34,7 +34,7 @@ export function Footer() {
             className="flex flex-col gap-4"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ export function Footer() {
           <m.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: 0.08 }}
           >
             <p className="text-dm-label text-ember text-[10px] mb-5">Navigate</p>
@@ -81,7 +81,7 @@ export function Footer() {
           <m.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: 0.16 }}
           >
             <p className="text-dm-label text-ember text-[10px] mb-5">Connect</p>

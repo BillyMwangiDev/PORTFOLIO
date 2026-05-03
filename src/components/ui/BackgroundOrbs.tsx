@@ -63,12 +63,12 @@ const orbs = [
 ]
 
 export function BackgroundOrbs() {
-  const [scale, setScale] = useState(1)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 768px)')
     const update = (e: MediaQueryListEvent | MediaQueryList) =>
-      setScale(e.matches ? 0.5 : 1)
+      setIsMobile(e.matches)
     update(mq)
     mq.addEventListener('change', update)
     return () => mq.removeEventListener('change', update)
@@ -80,32 +80,45 @@ export function BackgroundOrbs() {
       className="fixed inset-0 pointer-events-none overflow-hidden"
       style={{ zIndex: 0 }}
     >
-      {orbs.map((orb, i) => (
-        <m.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: orb.size * scale,
-            height: orb.size * scale,
-            background: orb.color,
-            opacity: orb.opacity,
-            filter: `blur(${orb.blur * scale}px)`,
-            willChange: 'transform',
-            ...orb.initial,
-          }}
-          animate={{
-            x: orb.waypoints.map((p) => p.x),
-            y: orb.waypoints.map((p) => p.y),
-          }}
-          transition={{
-            duration: orb.duration,
-            ease: 'easeInOut',
-            repeat: Infinity,
-            repeatType: 'loop',
-          }}
-        />
-      ))}
+      {orbs.map((orb, i) =>
+        isMobile ? (
+          <div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: orb.size * 0.4,
+              height: orb.size * 0.4,
+              background: orb.color,
+              opacity: orb.opacity * 0.7,
+              ...orb.initial,
+            }}
+          />
+        ) : (
+          <m.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: orb.size,
+              height: orb.size,
+              background: orb.color,
+              opacity: orb.opacity,
+              filter: `blur(${orb.blur}px)`,
+              willChange: 'transform',
+              ...orb.initial,
+            }}
+            animate={{
+              x: orb.waypoints.map((p) => p.x),
+              y: orb.waypoints.map((p) => p.y),
+            }}
+            transition={{
+              duration: orb.duration,
+              ease: 'easeInOut',
+              repeat: Infinity,
+              repeatType: 'loop',
+            }}
+          />
+        )
+      )}
     </div>
-
   )
 }

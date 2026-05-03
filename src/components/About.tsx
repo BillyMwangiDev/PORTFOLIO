@@ -21,7 +21,7 @@ export function About() {
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
           About
@@ -33,7 +33,7 @@ export function About() {
               className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden mb-8 border border-smoke"
               initial={{ opacity: 0, scale: 0.92 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <Image
@@ -50,7 +50,7 @@ export function About() {
               className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6 }}
             >
               Billy Mwangi
@@ -59,7 +59,7 @@ export function About() {
               className="font-instrument italic text-dusk text-base"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.15, duration: 0.5 }}
             >
               AI Architect & Software Engineer, Nairobi
@@ -71,7 +71,7 @@ export function About() {
               className="text-stone leading-relaxed text-base"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6 }}
             >
               I build AI-powered systems and full-stack products for African businesses. With three years of Python and a year specialising in backend architecture, I focus on systems that are reliable, fast, and built for real constraints: offline-capable, low-bandwidth, and cost-conscious.
@@ -80,7 +80,7 @@ export function About() {
               className="text-stone leading-relaxed text-base"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               I founded <a href="https://hekimalabs.tech" target="_blank" rel="noopener noreferrer" className="text-ember hover:text-dusk transition-colors duration-200">Hekima Labs</a> to bring intelligent automation to SMEs across the continent. My stack spans FastAPI, Django, React, React Native, and Next.js, whatever the problem needs.
@@ -94,7 +94,7 @@ export function About() {
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   className="bg-graphite rounded-xl p-4 border border-smoke/50"
                 >
                   <p className="font-almarai font-bold text-ember text-2xl">{stat.value}</p>

@@ -27,7 +27,7 @@ export function Navigation() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
     >
       {/* Pill */}
-      <div className="bg-coal/90 backdrop-blur-md border border-smoke/40 rounded-b-2xl px-4 py-3 flex items-center gap-1">
+      <div className="bg-coal/90 backdrop-blur-sm md:backdrop-blur-md border border-smoke/40 rounded-b-2xl px-4 py-3 flex items-center gap-1">
         {/* Desktop links */}
         {ANCHOR_ITEMS.map(item => (
           <Link
@@ -61,7 +61,7 @@ export function Navigation() {
       <AnimatePresence>
         {open && (
           <m.div
-            className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-1 w-44 bg-coal/95 backdrop-blur-md border border-smoke/40 rounded-2xl px-2 py-2 flex flex-col"
+            className="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-1 w-44 bg-coal/95 backdrop-blur-sm border border-smoke/40 rounded-2xl px-2 py-2 flex flex-col"
             initial={{ opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}

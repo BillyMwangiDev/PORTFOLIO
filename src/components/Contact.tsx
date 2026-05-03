@@ -23,7 +23,7 @@ export function Contact() {
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5 }}
         >
           Contact
@@ -35,7 +35,7 @@ export function Contact() {
               className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6 }}
             >
               Let&apos;s build something
@@ -44,7 +44,7 @@ export function Contact() {
               className="font-instrument italic text-dusk text-lg mb-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
             >
               for Africa, from Africa.
@@ -53,7 +53,7 @@ export function Contact() {
               className="text-stone text-sm leading-relaxed mb-8"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.15, duration: 0.5 }}
             >
               Open to contract work, collaborations, and co-founder conversations. Based in Nairobi, available remotely.
@@ -63,7 +63,7 @@ export function Contact() {
               className="inline-flex items-center gap-3 bg-ember hover:bg-dusk text-void font-dm-sans font-medium text-sm px-6 py-3 rounded-full transition-colors duration-200"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               Send me an email
@@ -74,7 +74,7 @@ export function Contact() {
             className="flex flex-col gap-3"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             {iconSocials.map(({ label, href, Icon }) => (
