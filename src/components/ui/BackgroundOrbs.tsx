@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const orbs = [
@@ -62,6 +63,17 @@ const orbs = [
 ]
 
 export function BackgroundOrbs() {
+  const [scale, setScale] = useState(1)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const update = (e: MediaQueryListEvent | MediaQueryList) =>
+      setScale(e.matches ? 0.5 : 1)
+    update(mq)
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
   return (
     <div
       aria-hidden
@@ -73,11 +85,11 @@ export function BackgroundOrbs() {
           key={i}
           className="absolute rounded-full"
           style={{
-            width: orb.size,
-            height: orb.size,
+            width: orb.size * scale,
+            height: orb.size * scale,
             background: orb.color,
             opacity: orb.opacity,
-            filter: `blur(${orb.blur}px)`,
+            filter: `blur(${orb.blur * scale}px)`,
             ...orb.initial,
           }}
           animate={{
