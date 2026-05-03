@@ -6,7 +6,7 @@ import { WordsPullUp } from './ui/WordsPullUp'
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col bg-void overflow-hidden" style={{ minHeight: '100svh' }}>
+    <section className="relative min-h-screen flex flex-col bg-void overflow-hidden" style={{ minHeight: '100svh' }}>
       <div
         className="
           absolute inset-3 md:inset-5
