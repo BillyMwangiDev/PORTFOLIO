@@ -44,6 +44,7 @@ export function Footer() {
                 width={36}
                 height={36}
                 className="opacity-90 invert mix-blend-screen"
+                unoptimized
               />
               <div className="flex flex-col">
                 <span className="text-dm-label text-cream-hi text-xs">Billy Mwangi</span>
