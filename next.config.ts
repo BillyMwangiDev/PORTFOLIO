@@ -40,8 +40,12 @@ const nextConfig: NextConfig = {
   generateEtags: true,
   // Image optimization
   images: {
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
+    formats: ['image/avif', 'image/webp'],
+    // 30 days — avoids constant revalidation on mobile networks
+    minimumCacheTTL: 2592000,
+    // Mobile-first srcset widths
+    deviceSizes: [390, 430, 640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 224, 256, 384],
   },
 };
 

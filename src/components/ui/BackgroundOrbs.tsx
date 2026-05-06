@@ -62,8 +62,14 @@ const orbs = [
   },
 ]
 
+// Only show 2 smallest orbs on mobile — no blur, no animation
+const mobileOrbs = [orbs[0], orbs[1]]
+
 export function BackgroundOrbs() {
-  const [isMobile, setIsMobile] = useState(false)
+  // Default to true (mobile/static) so SSR and first paint never render
+  // expensive animated blurred orbs on a mobile device.
+  const [isMobile, setIsMobile] = useState(true)
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 768px)')
@@ -71,8 +77,13 @@ export function BackgroundOrbs() {
       setIsMobile(e.matches)
     update(mq)
     mq.addEventListener('change', update)
+    setHydrated(true)
     return () => mq.removeEventListener('change', update)
   }, [])
+
+  // Don't render anything until we know the viewport — avoids first-paint
+  // layout shift and immediately painting heavy GPU layers on mobile.
+  if (!hydrated) return null
 
   return (
     <div
@@ -80,45 +91,45 @@ export function BackgroundOrbs() {
       className="fixed inset-0 pointer-events-none overflow-hidden"
       style={{ zIndex: 0 }}
     >
-      {orbs.map((orb, i) =>
-        isMobile ? (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: orb.size * 0.4,
-              height: orb.size * 0.4,
-              background: orb.color,
-              opacity: orb.opacity * 0.7,
-              ...orb.initial,
-            }}
-          />
-        ) : (
-          <m.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: orb.size,
-              height: orb.size,
-              background: orb.color,
-              opacity: orb.opacity,
-              filter: `blur(${orb.blur}px)`,
-              willChange: 'transform',
-              ...orb.initial,
-            }}
-            animate={{
-              x: orb.waypoints.map((p) => p.x),
-              y: orb.waypoints.map((p) => p.y),
-            }}
-            transition={{
-              duration: orb.duration,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              repeatType: 'loop',
-            }}
-          />
-        )
-      )}
+      {isMobile
+        ? mobileOrbs.map((orb, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: orb.size * 0.35,
+                height: orb.size * 0.35,
+                background: orb.color,
+                opacity: orb.opacity * 0.6,
+                ...orb.initial,
+              }}
+            />
+          ))
+        : orbs.map((orb, i) => (
+            <m.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: orb.size,
+                height: orb.size,
+                background: orb.color,
+                opacity: orb.opacity,
+                filter: `blur(${orb.blur}px)`,
+                willChange: 'transform',
+                ...orb.initial,
+              }}
+              animate={{
+                x: orb.waypoints.map((p) => p.x),
+                y: orb.waypoints.map((p) => p.y),
+              }}
+              transition={{
+                duration: orb.duration,
+                ease: 'easeInOut',
+                repeat: Infinity,
+                repeatType: 'loop',
+              }}
+            />
+          ))}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { m, useInView } from 'framer-motion'
+import { m, useInView, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import { stats } from '@/lib/data'
 
@@ -16,7 +16,9 @@ const fadeUp = {
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null)
-  const inView = useInView(sectionRef, { once: true, margin: '0px' })
+  const shouldReduce = useReducedMotion()
+  const inView = useInView(sectionRef, { once: true, margin: '-80px' })
+  const active = shouldReduce ? true : inView
 
   return (
     <section ref={sectionRef} id="about" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
@@ -24,7 +26,7 @@ export function About() {
         <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={active ? 'visible' : 'hidden'}
           custom={0}
           variants={fadeUp}
         >
@@ -37,7 +39,7 @@ export function About() {
             <m.div
               className="relative w-56 h-56 md:w-64 md:h-64 rounded-2xl overflow-hidden mb-8 border border-smoke"
               initial={{ opacity: 0, scale: 0.94 }}
-              animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.94 }}
+              animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <Image
@@ -46,14 +48,13 @@ export function About() {
                 fill
                 sizes="(max-width: 768px) 224px, 256px"
                 className="object-cover object-top"
-                priority
               />
             </m.div>
 
             <m.h2
               className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-1 text-center md:text-left"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={active ? 'visible' : 'hidden'}
               custom={0.1}
               variants={fadeUp}
             >
@@ -62,7 +63,7 @@ export function About() {
             <m.p
               className="font-instrument italic text-dusk text-base text-center md:text-left"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={active ? 'visible' : 'hidden'}
               custom={0.2}
               variants={fadeUp}
             >
@@ -75,7 +76,7 @@ export function About() {
             <m.p
               className="text-stone leading-relaxed text-base"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={active ? 'visible' : 'hidden'}
               custom={0.15}
               variants={fadeUp}
             >
@@ -84,7 +85,7 @@ export function About() {
             <m.p
               className="text-stone leading-relaxed text-base"
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={active ? 'visible' : 'hidden'}
               custom={0.25}
               variants={fadeUp}
             >
@@ -101,7 +102,7 @@ export function About() {
                   key={stat.label}
                   className="bg-graphite rounded-xl p-4 border border-smoke/50"
                   initial="hidden"
-                  animate={inView ? 'visible' : 'hidden'}
+                  animate={active ? 'visible' : 'hidden'}
                   custom={0.3 + i * 0.07}
                   variants={fadeUp}
                 >

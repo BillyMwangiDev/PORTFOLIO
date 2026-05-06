@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { m, useInView } from 'framer-motion'
+import { m, useInView, useReducedMotion } from 'framer-motion'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { socialLinks } from '@/lib/data'
 
@@ -18,7 +18,9 @@ const textSocials = [
 
 export function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
-  const inView = useInView(sectionRef, { once: true, margin: '0px' })
+  const shouldReduce = useReducedMotion()
+  const inView = useInView(sectionRef, { once: true, margin: '-80px' })
+  const active = shouldReduce ? true : inView
 
   return (
     <section ref={sectionRef} id="contact" className="bg-void py-24 md:py-32 px-6 md:px-14">
@@ -26,7 +28,7 @@ export function Contact() {
         <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          animate={active ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
           Contact
@@ -37,7 +39,7 @@ export function Contact() {
             <m.h2
               className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-4"
               initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               Let&apos;s build something
@@ -45,7 +47,7 @@ export function Contact() {
             <m.p
               className="font-instrument italic text-dusk text-lg mb-6"
               initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : { opacity: 0 }}
+              animate={active ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               for Africa, from Africa.
@@ -53,7 +55,7 @@ export function Contact() {
             <m.p
               className="text-stone text-sm leading-relaxed mb-8"
               initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ delay: 0.25, duration: 0.5 }}
             >
               Open to contract work, collaborations, and co-founder conversations. Based in Nairobi, available remotely.
@@ -62,7 +64,7 @@ export function Contact() {
               href={`mailto:${socialLinks.email}`}
               className="inline-flex items-center gap-3 bg-ember hover:bg-dusk text-void font-dm-sans font-medium text-sm px-6 py-3 rounded-full transition-colors duration-200"
               initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : { opacity: 0 }}
+              animate={active ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               Send me an email
@@ -72,7 +74,7 @@ export function Contact() {
           <m.div
             className="flex flex-col gap-3"
             initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+            animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {iconSocials.map(({ label, href, Icon }) => (
