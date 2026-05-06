@@ -1,18 +1,21 @@
 'use client'
 
-import { m } from 'framer-motion'
+import { useRef } from 'react'
+import { m, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/data'
 
 export function Projects() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const inView = useInView(sectionRef, { once: true, margin: '-60px' })
+
   return (
-    <section id="projects" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
+    <section ref={sectionRef} id="projects" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
       <div className="max-w-5xl mx-auto">
         <m.p
           className="text-dm-label text-ember text-xs mb-10"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
           Projects
@@ -20,9 +23,8 @@ export function Projects() {
         <m.h2
           className="font-almarai font-bold text-cream-hi text-3xl md:text-4xl mb-14"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
           Things I&apos;ve{' '}
           <span className="font-instrument italic text-dusk">built</span>
@@ -30,7 +32,7 @@ export function Projects() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, i) => {
-            const Card = (
+            const cardHeader = (
               <div className="flex items-start justify-between">
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.slice(0, 2).map((tag) => (
@@ -51,7 +53,7 @@ export function Projects() {
 
             const inner = (
               <>
-                {Card}
+                {cardHeader}
                 <div className="flex-1">
                   <h3 className="font-almarai font-bold text-cream-hi text-lg mb-2">{project.title}</h3>
                   <p className="text-stone text-sm leading-relaxed">{project.description}</p>
@@ -60,22 +62,21 @@ export function Projects() {
               </>
             )
 
-            const className = "group bg-graphite rounded-2xl p-6 border border-smoke/40 hover:border-ember/40 transition-colors duration-300 flex flex-col gap-4"
+            const cardClass = "group bg-graphite rounded-2xl p-6 border border-smoke/40 hover:border-ember/40 transition-colors duration-300 flex flex-col gap-4"
 
             return (
               <m.article
                 key={project.id}
                 initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ delay: (i % 9) * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+                transition={{ delay: 0.2 + (i % 9) * 0.07, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 {project.href ? (
-                  <a href={project.href} target="_blank" rel="noopener noreferrer" className={className}>
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" className={cardClass}>
                     {inner}
                   </a>
                 ) : (
-                  <div className={className}>{inner}</div>
+                  <div className={cardClass}>{inner}</div>
                 )}
               </m.article>
             )
@@ -85,9 +86,8 @@ export function Projects() {
         <m.div
           className="mt-12 flex justify-center"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           <a
             href="https://github.com/BillyMwangiDev"

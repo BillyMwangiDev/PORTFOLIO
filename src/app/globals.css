@@ -4,13 +4,16 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: #000000;
   color: #DEDBC8;
-  overflow-x: clip;
+  overflow-x: hidden;
+  min-height: 100dvh;
 }
 
 ::selection {
