@@ -4,7 +4,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -7,7 +7,7 @@ import { projects } from '@/lib/data'
 
 export function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
-  const inView = useInView(sectionRef, { once: true, margin: '-60px' })
+  const inView = useInView(sectionRef, { once: true, margin: '0px' })
 
   return (
     <section ref={sectionRef} id="projects" className="bg-coal/85 py-24 md:py-32 px-6 md:px-14">
